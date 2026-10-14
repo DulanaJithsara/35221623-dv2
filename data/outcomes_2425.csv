@@ -1,0 +1,321 @@
+state,species,group,outcome,outcome_family,count
+ACT,Dogs,Dogs,Reclaimed,Reunited with owner,109
+NSW,Dogs,Dogs,Reclaimed,Reunited with owner,229
+NT,Dogs,Dogs,Reclaimed,Reunited with owner,0
+QLD,Dogs,Dogs,Reclaimed,Reunited with owner,1647
+SA,Dogs,Dogs,Reclaimed,Reunited with owner,501
+TAS,Dogs,Dogs,Reclaimed,Reunited with owner,0
+VIC,Dogs,Dogs,Reclaimed,Reunited with owner,646
+WA,Dogs,Dogs,Reclaimed,Reunited with owner,71
+ACT,Dogs,Dogs,Returned,Reunited with owner,75
+NSW,Dogs,Dogs,Returned,Reunited with owner,243
+NT,Dogs,Dogs,Returned,Reunited with owner,18
+QLD,Dogs,Dogs,Returned,Reunited with owner,204
+SA,Dogs,Dogs,Returned,Reunited with owner,33
+TAS,Dogs,Dogs,Returned,Reunited with owner,48
+VIC,Dogs,Dogs,Returned,Reunited with owner,83
+WA,Dogs,Dogs,Returned,Reunited with owner,23
+ACT,Dogs,Dogs,Rehomed,Rehomed,310
+NSW,Dogs,Dogs,Rehomed,Rehomed,1350
+NT,Dogs,Dogs,Rehomed,Rehomed,119
+QLD,Dogs,Dogs,Rehomed,Rehomed,2922
+SA,Dogs,Dogs,Rehomed,Rehomed,867
+TAS,Dogs,Dogs,Rehomed,Rehomed,220
+VIC,Dogs,Dogs,Rehomed,Rehomed,704
+WA,Dogs,Dogs,Rehomed,Rehomed,347
+ACT,Dogs,Dogs,Currently in care,Still in care or transferred,60
+NSW,Dogs,Dogs,Currently in care,Still in care or transferred,442
+NT,Dogs,Dogs,Currently in care,Still in care or transferred,53
+QLD,Dogs,Dogs,Currently in care,Still in care or transferred,397
+SA,Dogs,Dogs,Currently in care,Still in care or transferred,204
+TAS,Dogs,Dogs,Currently in care,Still in care or transferred,91
+VIC,Dogs,Dogs,Currently in care,Still in care or transferred,199
+WA,Dogs,Dogs,Currently in care,Still in care or transferred,226
+ACT,Dogs,Dogs,Transferred,Still in care or transferred,5
+NSW,Dogs,Dogs,Transferred,Still in care or transferred,162
+NT,Dogs,Dogs,Transferred,Still in care or transferred,0
+QLD,Dogs,Dogs,Transferred,Still in care or transferred,63
+SA,Dogs,Dogs,Transferred,Still in care or transferred,49
+TAS,Dogs,Dogs,Transferred,Still in care or transferred,0
+VIC,Dogs,Dogs,Transferred,Still in care or transferred,159
+WA,Dogs,Dogs,Transferred,Still in care or transferred,91
+ACT,Dogs,Dogs,Euthanased,Euthanased,36
+NSW,Dogs,Dogs,Euthanased,Euthanased,878
+NT,Dogs,Dogs,Euthanased,Euthanased,14
+QLD,Dogs,Dogs,Euthanased,Euthanased,1133
+SA,Dogs,Dogs,Euthanased,Euthanased,303
+TAS,Dogs,Dogs,Euthanased,Euthanased,20
+VIC,Dogs,Dogs,Euthanased,Euthanased,210
+WA,Dogs,Dogs,Euthanased,Euthanased,174
+ACT,Dogs,Dogs,Other / died in care,Other / died in care,0
+NSW,Dogs,Dogs,Other / died in care,Other / died in care,16
+NT,Dogs,Dogs,Other / died in care,Other / died in care,0
+QLD,Dogs,Dogs,Other / died in care,Other / died in care,35
+SA,Dogs,Dogs,Other / died in care,Other / died in care,6
+TAS,Dogs,Dogs,Other / died in care,Other / died in care,0
+VIC,Dogs,Dogs,Other / died in care,Other / died in care,14
+WA,Dogs,Dogs,Other / died in care,Other / died in care,43
+ACT,Cats,Cats,Reclaimed,Reunited with owner,120
+NSW,Cats,Cats,Reclaimed,Reunited with owner,122
+NT,Cats,Cats,Reclaimed,Reunited with owner,1
+QLD,Cats,Cats,Reclaimed,Reunited with owner,443
+SA,Cats,Cats,Reclaimed,Reunited with owner,117
+TAS,Cats,Cats,Reclaimed,Reunited with owner,0
+VIC,Cats,Cats,Reclaimed,Reunited with owner,157
+WA,Cats,Cats,Reclaimed,Reunited with owner,19
+ACT,Cats,Cats,Returned,Reunited with owner,33
+NSW,Cats,Cats,Returned,Reunited with owner,116
+NT,Cats,Cats,Returned,Reunited with owner,0
+QLD,Cats,Cats,Returned,Reunited with owner,99
+SA,Cats,Cats,Returned,Reunited with owner,51
+TAS,Cats,Cats,Returned,Reunited with owner,22
+VIC,Cats,Cats,Returned,Reunited with owner,39
+WA,Cats,Cats,Returned,Reunited with owner,21
+ACT,Cats,Cats,Rehomed,Rehomed,1433
+NSW,Cats,Cats,Rehomed,Rehomed,3863
+NT,Cats,Cats,Rehomed,Rehomed,186
+QLD,Cats,Cats,Rehomed,Rehomed,4992
+SA,Cats,Cats,Rehomed,Rehomed,2191
+TAS,Cats,Cats,Rehomed,Rehomed,488
+VIC,Cats,Cats,Rehomed,Rehomed,2688
+WA,Cats,Cats,Rehomed,Rehomed,604
+ACT,Cats,Cats,Currently in care,Still in care or transferred,171
+NSW,Cats,Cats,Currently in care,Still in care or transferred,607
+NT,Cats,Cats,Currently in care,Still in care or transferred,58
+QLD,Cats,Cats,Currently in care,Still in care or transferred,543
+SA,Cats,Cats,Currently in care,Still in care or transferred,251
+TAS,Cats,Cats,Currently in care,Still in care or transferred,73
+VIC,Cats,Cats,Currently in care,Still in care or transferred,344
+WA,Cats,Cats,Currently in care,Still in care or transferred,81
+ACT,Cats,Cats,Transferred,Still in care or transferred,2
+NSW,Cats,Cats,Transferred,Still in care or transferred,40
+NT,Cats,Cats,Transferred,Still in care or transferred,2
+QLD,Cats,Cats,Transferred,Still in care or transferred,87
+SA,Cats,Cats,Transferred,Still in care or transferred,58
+TAS,Cats,Cats,Transferred,Still in care or transferred,0
+VIC,Cats,Cats,Transferred,Still in care or transferred,81
+WA,Cats,Cats,Transferred,Still in care or transferred,28
+ACT,Cats,Cats,Euthanased,Euthanased,151
+NSW,Cats,Cats,Euthanased,Euthanased,1768
+NT,Cats,Cats,Euthanased,Euthanased,9
+QLD,Cats,Cats,Euthanased,Euthanased,1772
+SA,Cats,Cats,Euthanased,Euthanased,663
+TAS,Cats,Cats,Euthanased,Euthanased,109
+VIC,Cats,Cats,Euthanased,Euthanased,471
+WA,Cats,Cats,Euthanased,Euthanased,146
+ACT,Cats,Cats,Other / died in care,Other / died in care,25
+NSW,Cats,Cats,Other / died in care,Other / died in care,105
+NT,Cats,Cats,Other / died in care,Other / died in care,3
+QLD,Cats,Cats,Other / died in care,Other / died in care,83
+SA,Cats,Cats,Other / died in care,Other / died in care,24
+TAS,Cats,Cats,Other / died in care,Other / died in care,8
+VIC,Cats,Cats,Other / died in care,Other / died in care,50
+WA,Cats,Cats,Other / died in care,Other / died in care,21
+ACT,Horses,Livestock & horses,Reclaimed,Reunited with owner,0
+NSW,Horses,Livestock & horses,Reclaimed,Reunited with owner,0
+NT,Horses,Livestock & horses,Reclaimed,Reunited with owner,0
+QLD,Horses,Livestock & horses,Reclaimed,Reunited with owner,2
+SA,Horses,Livestock & horses,Reclaimed,Reunited with owner,0
+TAS,Horses,Livestock & horses,Reclaimed,Reunited with owner,0
+VIC,Horses,Livestock & horses,Reclaimed,Reunited with owner,0
+WA,Horses,Livestock & horses,Reclaimed,Reunited with owner,0
+ACT,Horses,Livestock & horses,Returned,Reunited with owner,0
+NSW,Horses,Livestock & horses,Returned,Reunited with owner,1
+NT,Horses,Livestock & horses,Returned,Reunited with owner,0
+QLD,Horses,Livestock & horses,Returned,Reunited with owner,2
+SA,Horses,Livestock & horses,Returned,Reunited with owner,0
+TAS,Horses,Livestock & horses,Returned,Reunited with owner,0
+VIC,Horses,Livestock & horses,Returned,Reunited with owner,2
+WA,Horses,Livestock & horses,Returned,Reunited with owner,0
+ACT,Horses,Livestock & horses,Rehomed,Rehomed,0
+NSW,Horses,Livestock & horses,Rehomed,Rehomed,31
+NT,Horses,Livestock & horses,Rehomed,Rehomed,0
+QLD,Horses,Livestock & horses,Rehomed,Rehomed,8
+SA,Horses,Livestock & horses,Rehomed,Rehomed,0
+TAS,Horses,Livestock & horses,Rehomed,Rehomed,2
+VIC,Horses,Livestock & horses,Rehomed,Rehomed,131
+WA,Horses,Livestock & horses,Rehomed,Rehomed,6
+ACT,Horses,Livestock & horses,Currently in care,Still in care or transferred,0
+NSW,Horses,Livestock & horses,Currently in care,Still in care or transferred,44
+NT,Horses,Livestock & horses,Currently in care,Still in care or transferred,0
+QLD,Horses,Livestock & horses,Currently in care,Still in care or transferred,9
+SA,Horses,Livestock & horses,Currently in care,Still in care or transferred,39
+TAS,Horses,Livestock & horses,Currently in care,Still in care or transferred,3
+VIC,Horses,Livestock & horses,Currently in care,Still in care or transferred,69
+WA,Horses,Livestock & horses,Currently in care,Still in care or transferred,17
+ACT,Horses,Livestock & horses,Transferred,Still in care or transferred,0
+NSW,Horses,Livestock & horses,Transferred,Still in care or transferred,1
+NT,Horses,Livestock & horses,Transferred,Still in care or transferred,0
+QLD,Horses,Livestock & horses,Transferred,Still in care or transferred,1
+SA,Horses,Livestock & horses,Transferred,Still in care or transferred,18
+TAS,Horses,Livestock & horses,Transferred,Still in care or transferred,0
+VIC,Horses,Livestock & horses,Transferred,Still in care or transferred,34
+WA,Horses,Livestock & horses,Transferred,Still in care or transferred,1
+ACT,Horses,Livestock & horses,Euthanased,Euthanased,0
+NSW,Horses,Livestock & horses,Euthanased,Euthanased,24
+NT,Horses,Livestock & horses,Euthanased,Euthanased,0
+QLD,Horses,Livestock & horses,Euthanased,Euthanased,5
+SA,Horses,Livestock & horses,Euthanased,Euthanased,9
+TAS,Horses,Livestock & horses,Euthanased,Euthanased,5
+VIC,Horses,Livestock & horses,Euthanased,Euthanased,67
+WA,Horses,Livestock & horses,Euthanased,Euthanased,2
+ACT,Horses,Livestock & horses,Other / died in care,Other / died in care,0
+NSW,Horses,Livestock & horses,Other / died in care,Other / died in care,2
+NT,Horses,Livestock & horses,Other / died in care,Other / died in care,0
+QLD,Horses,Livestock & horses,Other / died in care,Other / died in care,0
+SA,Horses,Livestock & horses,Other / died in care,Other / died in care,0
+TAS,Horses,Livestock & horses,Other / died in care,Other / died in care,0
+VIC,Horses,Livestock & horses,Other / died in care,Other / died in care,2
+WA,Horses,Livestock & horses,Other / died in care,Other / died in care,0
+ACT,Livestock,Livestock & horses,Reclaimed,Reunited with owner,0
+NSW,Livestock,Livestock & horses,Reclaimed,Reunited with owner,1
+NT,Livestock,Livestock & horses,Reclaimed,Reunited with owner,0
+QLD,Livestock,Livestock & horses,Reclaimed,Reunited with owner,13
+SA,Livestock,Livestock & horses,Reclaimed,Reunited with owner,13
+TAS,Livestock,Livestock & horses,Reclaimed,Reunited with owner,0
+VIC,Livestock,Livestock & horses,Reclaimed,Reunited with owner,0
+WA,Livestock,Livestock & horses,Reclaimed,Reunited with owner,3
+ACT,Livestock,Livestock & horses,Returned,Reunited with owner,0
+NSW,Livestock,Livestock & horses,Returned,Reunited with owner,41
+NT,Livestock,Livestock & horses,Returned,Reunited with owner,0
+QLD,Livestock,Livestock & horses,Returned,Reunited with owner,2
+SA,Livestock,Livestock & horses,Returned,Reunited with owner,1
+TAS,Livestock,Livestock & horses,Returned,Reunited with owner,0
+VIC,Livestock,Livestock & horses,Returned,Reunited with owner,1
+WA,Livestock,Livestock & horses,Returned,Reunited with owner,0
+ACT,Livestock,Livestock & horses,Rehomed,Rehomed,43
+NSW,Livestock,Livestock & horses,Rehomed,Rehomed,104
+NT,Livestock,Livestock & horses,Rehomed,Rehomed,2
+QLD,Livestock,Livestock & horses,Rehomed,Rehomed,234
+SA,Livestock,Livestock & horses,Rehomed,Rehomed,40
+TAS,Livestock,Livestock & horses,Rehomed,Rehomed,28
+VIC,Livestock,Livestock & horses,Rehomed,Rehomed,32
+WA,Livestock,Livestock & horses,Rehomed,Rehomed,68
+ACT,Livestock,Livestock & horses,Currently in care,Still in care or transferred,7
+NSW,Livestock,Livestock & horses,Currently in care,Still in care or transferred,15
+NT,Livestock,Livestock & horses,Currently in care,Still in care or transferred,0
+QLD,Livestock,Livestock & horses,Currently in care,Still in care or transferred,32
+SA,Livestock,Livestock & horses,Currently in care,Still in care or transferred,98
+TAS,Livestock,Livestock & horses,Currently in care,Still in care or transferred,26
+VIC,Livestock,Livestock & horses,Currently in care,Still in care or transferred,19
+WA,Livestock,Livestock & horses,Currently in care,Still in care or transferred,5
+ACT,Livestock,Livestock & horses,Transferred,Still in care or transferred,0
+NSW,Livestock,Livestock & horses,Transferred,Still in care or transferred,46
+NT,Livestock,Livestock & horses,Transferred,Still in care or transferred,0
+QLD,Livestock,Livestock & horses,Transferred,Still in care or transferred,16
+SA,Livestock,Livestock & horses,Transferred,Still in care or transferred,94
+TAS,Livestock,Livestock & horses,Transferred,Still in care or transferred,0
+VIC,Livestock,Livestock & horses,Transferred,Still in care or transferred,21
+WA,Livestock,Livestock & horses,Transferred,Still in care or transferred,8
+ACT,Livestock,Livestock & horses,Euthanased,Euthanased,11
+NSW,Livestock,Livestock & horses,Euthanased,Euthanased,50
+NT,Livestock,Livestock & horses,Euthanased,Euthanased,0
+QLD,Livestock,Livestock & horses,Euthanased,Euthanased,196
+SA,Livestock,Livestock & horses,Euthanased,Euthanased,26
+TAS,Livestock,Livestock & horses,Euthanased,Euthanased,2
+VIC,Livestock,Livestock & horses,Euthanased,Euthanased,20
+WA,Livestock,Livestock & horses,Euthanased,Euthanased,25
+ACT,Livestock,Livestock & horses,Other / died in care,Other / died in care,0
+NSW,Livestock,Livestock & horses,Other / died in care,Other / died in care,2
+NT,Livestock,Livestock & horses,Other / died in care,Other / died in care,0
+QLD,Livestock,Livestock & horses,Other / died in care,Other / died in care,16
+SA,Livestock,Livestock & horses,Other / died in care,Other / died in care,7
+TAS,Livestock,Livestock & horses,Other / died in care,Other / died in care,0
+VIC,Livestock,Livestock & horses,Other / died in care,Other / died in care,3
+WA,Livestock,Livestock & horses,Other / died in care,Other / died in care,4
+ACT,Wildlife,Wildlife,Released to the wild,Released to the wild,1
+NSW,Wildlife,Wildlife,Released to the wild,Released to the wild,1
+NT,Wildlife,Wildlife,Released to the wild,Released to the wild,0
+QLD,Wildlife,Wildlife,Released to the wild,Released to the wild,2521
+SA,Wildlife,Wildlife,Released to the wild,Released to the wild,59
+TAS,Wildlife,Wildlife,Released to the wild,Released to the wild,0
+VIC,Wildlife,Wildlife,Released to the wild,Released to the wild,13
+WA,Wildlife,Wildlife,Released to the wild,Released to the wild,0
+ACT,Wildlife,Wildlife,Currently in care,Still in care or transferred,4
+NSW,Wildlife,Wildlife,Currently in care,Still in care or transferred,3
+NT,Wildlife,Wildlife,Currently in care,Still in care or transferred,0
+QLD,Wildlife,Wildlife,Currently in care,Still in care or transferred,172
+SA,Wildlife,Wildlife,Currently in care,Still in care or transferred,13
+TAS,Wildlife,Wildlife,Currently in care,Still in care or transferred,0
+VIC,Wildlife,Wildlife,Currently in care,Still in care or transferred,8
+WA,Wildlife,Wildlife,Currently in care,Still in care or transferred,0
+ACT,Wildlife,Wildlife,Transferred,Still in care or transferred,27
+NSW,Wildlife,Wildlife,Transferred,Still in care or transferred,103
+NT,Wildlife,Wildlife,Transferred,Still in care or transferred,0
+QLD,Wildlife,Wildlife,Transferred,Still in care or transferred,5591
+SA,Wildlife,Wildlife,Transferred,Still in care or transferred,173
+TAS,Wildlife,Wildlife,Transferred,Still in care or transferred,0
+VIC,Wildlife,Wildlife,Transferred,Still in care or transferred,18
+WA,Wildlife,Wildlife,Transferred,Still in care or transferred,0
+ACT,Wildlife,Wildlife,Euthanased,Euthanased,71
+NSW,Wildlife,Wildlife,Euthanased,Euthanased,301
+NT,Wildlife,Wildlife,Euthanased,Euthanased,0
+QLD,Wildlife,Wildlife,Euthanased,Euthanased,17307
+SA,Wildlife,Wildlife,Euthanased,Euthanased,103
+TAS,Wildlife,Wildlife,Euthanased,Euthanased,0
+VIC,Wildlife,Wildlife,Euthanased,Euthanased,239
+WA,Wildlife,Wildlife,Euthanased,Euthanased,0
+ACT,Wildlife,Wildlife,Other / died in care,Other / died in care,5
+NSW,Wildlife,Wildlife,Other / died in care,Other / died in care,11
+NT,Wildlife,Wildlife,Other / died in care,Other / died in care,0
+QLD,Wildlife,Wildlife,Other / died in care,Other / died in care,973
+SA,Wildlife,Wildlife,Other / died in care,Other / died in care,13
+TAS,Wildlife,Wildlife,Other / died in care,Other / died in care,0
+VIC,Wildlife,Wildlife,Other / died in care,Other / died in care,64
+WA,Wildlife,Wildlife,Other / died in care,Other / died in care,0
+ACT,Other pets,Other pets,Reclaimed,Reunited with owner,19
+NSW,Other pets,Other pets,Reclaimed,Reunited with owner,0
+NT,Other pets,Other pets,Reclaimed,Reunited with owner,24
+QLD,Other pets,Other pets,Reclaimed,Reunited with owner,2
+SA,Other pets,Other pets,Reclaimed,Reunited with owner,10
+TAS,Other pets,Other pets,Reclaimed,Reunited with owner,8
+VIC,Other pets,Other pets,Reclaimed,Reunited with owner,12
+WA,Other pets,Other pets,Reclaimed,Reunited with owner,4
+ACT,Other pets,Other pets,Returned,Reunited with owner,8
+NSW,Other pets,Other pets,Returned,Reunited with owner,215
+NT,Other pets,Other pets,Returned,Reunited with owner,0
+QLD,Other pets,Other pets,Returned,Reunited with owner,23
+SA,Other pets,Other pets,Returned,Reunited with owner,12
+TAS,Other pets,Other pets,Returned,Reunited with owner,0
+VIC,Other pets,Other pets,Returned,Reunited with owner,7
+WA,Other pets,Other pets,Returned,Reunited with owner,3
+ACT,Other pets,Other pets,Rehomed,Rehomed,191
+NSW,Other pets,Other pets,Rehomed,Rehomed,646
+NT,Other pets,Other pets,Rehomed,Rehomed,0
+QLD,Other pets,Other pets,Rehomed,Rehomed,652
+SA,Other pets,Other pets,Rehomed,Rehomed,241
+TAS,Other pets,Other pets,Rehomed,Rehomed,71
+VIC,Other pets,Other pets,Rehomed,Rehomed,651
+WA,Other pets,Other pets,Rehomed,Rehomed,269
+ACT,Other pets,Other pets,Currently in care,Still in care or transferred,8
+NSW,Other pets,Other pets,Currently in care,Still in care or transferred,117
+NT,Other pets,Other pets,Currently in care,Still in care or transferred,0
+QLD,Other pets,Other pets,Currently in care,Still in care or transferred,222
+SA,Other pets,Other pets,Currently in care,Still in care or transferred,226
+TAS,Other pets,Other pets,Currently in care,Still in care or transferred,8
+VIC,Other pets,Other pets,Currently in care,Still in care or transferred,743
+WA,Other pets,Other pets,Currently in care,Still in care or transferred,32
+ACT,Other pets,Other pets,Transferred,Still in care or transferred,1
+NSW,Other pets,Other pets,Transferred,Still in care or transferred,167
+NT,Other pets,Other pets,Transferred,Still in care or transferred,0
+QLD,Other pets,Other pets,Transferred,Still in care or transferred,34
+SA,Other pets,Other pets,Transferred,Still in care or transferred,118
+TAS,Other pets,Other pets,Transferred,Still in care or transferred,0
+VIC,Other pets,Other pets,Transferred,Still in care or transferred,55
+WA,Other pets,Other pets,Transferred,Still in care or transferred,6
+ACT,Other pets,Other pets,Euthanased,Euthanased,17
+NSW,Other pets,Other pets,Euthanased,Euthanased,476
+NT,Other pets,Other pets,Euthanased,Euthanased,0
+QLD,Other pets,Other pets,Euthanased,Euthanased,421
+SA,Other pets,Other pets,Euthanased,Euthanased,128
+TAS,Other pets,Other pets,Euthanased,Euthanased,1
+VIC,Other pets,Other pets,Euthanased,Euthanased,105
+WA,Other pets,Other pets,Euthanased,Euthanased,32
+ACT,Other pets,Other pets,Other / died in care,Other / died in care,11
+NSW,Other pets,Other pets,Other / died in care,Other / died in care,54
+NT,Other pets,Other pets,Other / died in care,Other / died in care,0
+QLD,Other pets,Other pets,Other / died in care,Other / died in care,94
+SA,Other pets,Other pets,Other / died in care,Other / died in care,26
+TAS,Other pets,Other pets,Other / died in care,Other / died in care,0
+VIC,Other pets,Other pets,Other / died in care,Other / died in care,40
+WA,Other pets,Other pets,Other / died in care,Other / died in care,11

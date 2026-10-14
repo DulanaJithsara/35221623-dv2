@@ -1,0 +1,81 @@
+state,species,reason,count
+ACT,Dogs,Infectious disease,0
+NSW,Dogs,Infectious disease,6
+NT,Dogs,Infectious disease,0
+QLD,Dogs,Infectious disease,28
+SA,Dogs,Infectious disease,3
+TAS,Dogs,Infectious disease,0
+VIC,Dogs,Infectious disease,4
+WA,Dogs,Infectious disease,22
+ACT,Dogs,Medical,25
+NSW,Dogs,Medical,235
+NT,Dogs,Medical,7
+QLD,Dogs,Medical,410
+SA,Dogs,Medical,109
+TAS,Dogs,Medical,17
+VIC,Dogs,Medical,97
+WA,Dogs,Medical,40
+ACT,Dogs,Behavioural,11
+NSW,Dogs,Behavioural,627
+NT,Dogs,Behavioural,7
+QLD,Dogs,Behavioural,672
+SA,Dogs,Behavioural,161
+TAS,Dogs,Behavioural,3
+VIC,Dogs,Behavioural,100
+WA,Dogs,Behavioural,71
+ACT,Dogs,Legal,0
+NSW,Dogs,Legal,2
+NT,Dogs,Legal,0
+QLD,Dogs,Legal,19
+SA,Dogs,Legal,20
+TAS,Dogs,Legal,0
+VIC,Dogs,Legal,6
+WA,Dogs,Legal,7
+ACT,Dogs,Other,0
+NSW,Dogs,Other,8
+NT,Dogs,Other,0
+QLD,Dogs,Other,4
+SA,Dogs,Other,10
+TAS,Dogs,Other,0
+VIC,Dogs,Other,3
+WA,Dogs,Other,34
+ACT,Cats,Infectious disease,2
+NSW,Cats,Infectious disease,246
+NT,Cats,Infectious disease,0
+QLD,Cats,Infectious disease,348
+SA,Cats,Infectious disease,31
+TAS,Cats,Infectious disease,0
+VIC,Cats,Infectious disease,39
+WA,Cats,Infectious disease,0
+ACT,Cats,Medical,69
+NSW,Cats,Medical,871
+NT,Cats,Medical,6
+QLD,Cats,Medical,932
+SA,Cats,Medical,237
+TAS,Cats,Medical,24
+VIC,Cats,Medical,157
+WA,Cats,Medical,83
+ACT,Cats,Behavioural,80
+NSW,Cats,Behavioural,321
+NT,Cats,Behavioural,3
+QLD,Cats,Behavioural,473
+SA,Cats,Behavioural,383
+TAS,Cats,Behavioural,85
+VIC,Cats,Behavioural,179
+WA,Cats,Behavioural,52
+ACT,Cats,Legal,0
+NSW,Cats,Legal,0
+NT,Cats,Legal,0
+QLD,Cats,Legal,2
+SA,Cats,Legal,0
+TAS,Cats,Legal,0
+VIC,Cats,Legal,47
+WA,Cats,Legal,0
+ACT,Cats,Other,0
+NSW,Cats,Other,330
+NT,Cats,Other,0
+QLD,Cats,Other,17
+SA,Cats,Other,12
+TAS,Cats,Other,0
+VIC,Cats,Other,49
+WA,Cats,Other,11

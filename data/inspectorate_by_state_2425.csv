@@ -1,0 +1,8 @@
+state,state_name,population_2025,complaints_investigated,prosecutions_finalised,successful_prosecutions,charges_laid,people_charged,cases_pending,routine_inspections,complaints_per_10k
+ACT,Australian Capital Territory,484800,744,5,5,0,5,0,9,15.3
+NSW,New South Wales,8593900,16713,226,119,991,0,104,49,19.4
+QLD,Queensland,5669800,13874,3,0,0,3,0,0,24.5
+SA,South Australia,1902300,5125,37,32,192,44,46,8,26.9
+TAS,Tasmania,576000,1915,2,2,56,4,20,31,33.2
+VIC,Victoria,7074500,10206,47,47,204,49,19,12,14.4
+WA,Western Australia,3043700,7195,61,59,165,59,46,0,23.6

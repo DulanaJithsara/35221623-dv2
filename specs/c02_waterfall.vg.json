@@ -1,0 +1,343 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Waterfall chart: how the national intake fell from 103,057 (2020-21) to 77,464 (2024-25), split by animal group. Source: RSPCA National Statistics 2024-25, Table 2.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/national_trend.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.year == '2020-21' || datum.year == '2024-25'"
+    },
+    {
+      "pivot": "year",
+      "value": "received",
+      "groupby": [
+        "group"
+      ]
+    },
+    {
+      "calculate": "datum['2024-25'] - datum['2020-21']",
+      "as": "change"
+    },
+    {
+      "calculate": "datum.group == 'Dogs' ? 1 : datum.group == 'Cats' ? 2 : 3",
+      "as": "order"
+    },
+    {
+      "calculate": "datum.group == 'Other animals' ? 'Wildlife & other' : datum.group",
+      "as": "label"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "2020-21",
+          "as": "start_total"
+        },
+        {
+          "op": "sum",
+          "field": "2024-25",
+          "as": "end_total"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "change",
+          "as": "cum_change"
+        }
+      ],
+      "sort": [
+        {
+          "field": "order"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ]
+    },
+    {
+      "calculate": "datum.start_total + datum.cum_change",
+      "as": "bar_end"
+    },
+    {
+      "calculate": "datum.bar_end - datum.change",
+      "as": "bar_start"
+    },
+    {
+      "calculate": "format(datum.change, ',')",
+      "as": "change_label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "label",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "2020–21 total",
+        "Dogs",
+        "Cats",
+        "Wildlife & other",
+        "2024–25 total"
+      ],
+      "scale": {
+        "domain": [
+          "2020–21 total",
+          "Dogs",
+          "Cats",
+          "Wildlife & other",
+          "2024–25 total"
+        ],
+        "paddingInner": 0.25
+      },
+      "axis": {
+        "labelAngle": 0,
+        "labelPadding": 8
+      }
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "start_total",
+              "as": "v"
+            }
+          ]
+        },
+        {
+          "calculate": "'2020–21 total'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "color": "#52668A",
+        "cornerRadiusTopLeft": 3,
+        "cornerRadiusTopRight": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "v",
+          "type": "quantitative",
+          "title": "Animals received",
+          "scale": {
+            "domain": [
+              0,
+              110000
+            ]
+          },
+          "axis": {
+            "format": ",.0f",
+            "tickCount": 5
+          }
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "title": "Bar"
+          },
+          {
+            "field": "v",
+            "title": "Animals received",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "start_total",
+              "as": "v"
+            }
+          ]
+        },
+        {
+          "calculate": "'2020–21 total'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -9,
+        "fontWeight": 700,
+        "fontSize": 12,
+        "color": "#E9EEF5"
+      },
+      "encoding": {
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "v",
+          "format": ","
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar"
+      },
+      "encoding": {
+        "y": {
+          "field": "bar_start",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "bar_end"
+        },
+        "color": {
+          "field": "label",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Dogs",
+              "Cats",
+              "Wildlife & other"
+            ],
+            "range": [
+              "#3A93E0",
+              "#E26A3A",
+              "#7D8FA9"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "title": "Animal group"
+          },
+          {
+            "field": "2020-21",
+            "title": "2020–21",
+            "format": ","
+          },
+          {
+            "field": "2024-25",
+            "title": "2024–25",
+            "format": ","
+          },
+          {
+            "field": "change",
+            "title": "Change",
+            "format": "+,"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 12,
+        "fontWeight": 700,
+        "fontSize": 12,
+        "color": "#E9EEF5",
+        "baseline": "top"
+      },
+      "encoding": {
+        "y": {
+          "field": "bar_end",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "change_label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.group != null"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "end_total",
+              "as": "v_end"
+            }
+          ]
+        },
+        {
+          "calculate": "'2024–25 total'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "color": "#E9EEF5",
+        "cornerRadiusTopLeft": 3,
+        "cornerRadiusTopRight": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "v_end",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "title": "Bar"
+          },
+          {
+            "field": "v_end",
+            "title": "Animals received",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.group != null"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "end_total",
+              "as": "v_end"
+            }
+          ]
+        },
+        {
+          "calculate": "'2024–25 total'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -9,
+        "fontWeight": 700,
+        "fontSize": 12,
+        "color": "#E9EEF5"
+      },
+      "encoding": {
+        "y": {
+          "field": "v_end",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "v_end",
+          "format": ","
+        }
+      }
+    }
+  ]
+}
