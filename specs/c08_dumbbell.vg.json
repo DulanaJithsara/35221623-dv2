@@ -1,91 +1,93 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Dumbbell chart: total animals received by each state/territory RSPCA in 2023-24 vs 2024-25, sorted by percentage change. Source: RSPCA National Statistics 2024-25, Table 4.",
+  "description": "Diverging choropleth map: percentage change in animals received by each state/territory RSPCA from 2023-24 to 2024-25. Blue = fewer animals, gold = more. Source: RSPCA National Statistics 2024-25, Table 4.",
   "width": "container",
-  "height": 300,
-  "data": {"url": "data/received_by_state.csv"},
-  "transform": [
-    {"filter": "datum.group == 'All animals'"},
-    {
-      "calculate": "(datum.received_2425 - datum.received_2324) / datum.received_2324",
-      "as": "pct_change"
-    },
-    {"fold": ["received_2324", "received_2425"], "as": ["year_key", "received"]},
-    {
-      "calculate": "datum.year_key == 'received_2324' ? '2023–24' : '2024–25'",
-      "as": "year"
-    }
-  ],
-  "encoding": {
-    "y": {
-      "field": "state_name",
-      "type": "nominal",
-      "title": null,
-      "sort": {"field": "pct_change", "order": "ascending"},
-      "axis": {"domain": false, "ticks": false, "labelPadding": 8, "labelLimit": 220}
-    },
-    "x": {
-      "field": "received",
-      "type": "quantitative",
-      "title": "Animals received",
-      "scale": {"domain": [0, 50000]},
-      "axis": {"format": ",.0f", "tickCount": 5, "grid": true}
-    }
-  },
+  "height": 420,
+  "projection": {"type": "conicEqualArea", "parallels": [-18, -36], "rotate": [-134, 0]},
   "layer": [
     {
-      "mark": {"type": "rule", "color": "#FFB547", "strokeWidth": 2},
-      "encoding": {"detail": {"field": "state_name"}}
-    },
-    {
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 110,
-              "strokeWidth": 2,
-        "opacity": 1
-      },
+      "data": {"url": "data/received_by_state.csv"},
+      "transform": [
+        {"filter": "datum.group == 'All animals'"},
+        {"calculate": "(datum.received_2425 - datum.received_2324) / datum.received_2324", "as": "pct_change"},
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/aus_states.topojson",
+              "format": {"type": "topojson", "feature": "states"}
+            },
+            "key": "properties.state"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "#172A45", "strokeWidth": 1.5},
       "encoding": {
-        "fill": {
-          "field": "year",
-          "type": "nominal",
-          "title": null,
-          "scale": {"domain": ["2023–24", "2024–25"], "range": ["#172A45", "#FFB547"]},
-          "legend": {"orient": "top", "direction": "horizontal"}
-        },
-        "stroke": {
-          "field": "year",
-          "type": "nominal",
-          "title": null,
-          "scale": {"domain": ["2023–24", "2024–25"], "range": ["#E9EEF5", "#FFB547"]}
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "title": "Change in animals received",
+          "scale": {
+            "domain": [-0.35, -0.175, 0, 0.175, 0.35],
+            "range": ["#2E8FB8", "#25628C", "#1E3557", "#9C7A3E", "#FFB547"],
+            "interpolate": "rgb"
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "labelExpr": "datum.value == 0 ? '0%' : format(datum.value, '+.0%')",
+            "values": [-0.3, -0.15, 0, 0.15, 0.3],
+            "gradientLength": 260,
+            "titleLimit": 400
+          }
         },
         "tooltip": [
           {"field": "state_name", "title": "RSPCA"},
-          {"field": "year", "title": "Year"},
-          {"field": "received", "title": "Animals received", "format": ","},
-          {"field": "pct_change", "title": "Change on previous year", "format": "+.1%"}
+          {"field": "received_2324", "title": "Received 2023–24", "format": ","},
+          {"field": "received_2425", "title": "Received 2024–25", "format": ","},
+          {"field": "pct_change", "title": "Change", "format": "+.1%"}
         ]
       }
     },
     {
-      "transform": [{"filter": "datum.year == '2024–25'"}],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 14,
-        "fontSize": 11.5,
-        "fontWeight": 700
-      },
+      "data": {"url": "data/received_by_state.csv"},
+      "transform": [
+        {"filter": "datum.group == 'All animals'"},
+        {"calculate": "(datum.received_2425 - datum.received_2324) / datum.received_2324", "as": "pct_change"},
+        {
+          "lookup": "state",
+          "from": {
+            "data": {"url": "data/state_centroids.csv"},
+            "key": "state",
+            "fields": ["lon", "lat"]
+          }
+        },
+        {"calculate": "datum.state == 'ACT' ? +datum.lon + 2.6 : (datum.state == 'VIC' ? +datum.lon + 0.8 : +datum.lon)", "as": "lon_l"},
+        {"calculate": "datum.state == 'ACT' ? +datum.lat - 0.9 : +datum.lat", "as": "lat_l"},
+        {"calculate": "datum.state + ' ' + format(datum.pct_change, '+.0%')", "as": "label"}
+      ],
       "encoding": {
-        "x": {"datum": 50000},
-        "text": {"field": "pct_change", "format": "+.0%"},
-        "color": {
-          "condition": {"test": "datum.pct_change > 0", "value": "#FFB547"},
-          "value": "#E9EEF5"
-        }
-      }
+        "longitude": {"field": "lon_l", "type": "quantitative"},
+        "latitude": {"field": "lat_l", "type": "quantitative"},
+        "text": {"field": "label"}
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 13,
+            "fontWeight": 700,
+            "color": "#0F1B2D",
+            "stroke": "#0F1B2D",
+            "strokeWidth": 4,
+            "strokeJoin": "round",
+            "opacity": 0.75
+          }
+        },
+        {"mark": {"type": "text", "fontSize": 13, "fontWeight": 700, "color": "#FFFFFF"}}
+      ]
     }
-  ],
-  "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 0, "top": 4, "bottom": 0, "right": 40}
+  ]
 }
