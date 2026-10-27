@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth map: animals received by each state/territory RSPCA per 10,000 residents in 2024-25. A dropdown switches the animal group. Sources: RSPCA National Statistics 2024-25 (Table 4); ABS estimated resident population, 30 June 2025.",
+  "width": "container",
+  "height": 420,
+  "params": [
+    {
+      "name": "animal",
+      "value": "All animals",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All animals",
+          "Dogs",
+          "Cats",
+          "Wildlife",
+          "Other pets",
+          "Livestock & horses"
+        ],
+        "name": "Show animals received: "
+      }
+    }
+  ],
+  "projection": {"type": "conicEqualArea", "parallels": [-18, -36], "rotate": [-134, 0]},
+  "layer": [
+    {
+      "data": {
+        "url": "data/aus_states.topojson",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#22395A",
+        "stroke": "#172A45",
+        "strokeWidth": 1.5
+      }
+    },
+    {
+      "data": {"url": "data/received_by_state.csv"},
+      "transform": [
+        {"filter": "datum.group == animal"},
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/aus_states.topojson",
+              "format": {"type": "topojson", "feature": "states"}
+            },
+            "key": "properties.state"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "#172A45", "strokeWidth": 1.5},
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "per_10k_2425",
+          "type": "quantitative",
+          "title": "Received per 10,000 residents",
+          "scale": {
+            "type": "quantize",
+            "nice": true,
+            "range": ["#21456B", "#2A6A8E", "#3593AE", "#5DBCCB", "#A6E6EA"]
+          },
+          "legend": {
+            "orient": "right",
+            "direction": "vertical",
+            "format": ".0f",
+            "titleLimit": 200,
+            "title": ["Received per", "10,000 residents"]
+          }
+        },
+        "tooltip": [
+          {"field": "state_name", "title": "RSPCA"},
+          {"field": "group", "title": "Animals"},
+          {"field": "received_2425", "title": "Received 2024–25", "format": ","},
+          {"field": "population_2025", "title": "Residents (June 2025)", "format": ","},
+          {"field": "per_10k_2425", "title": "Per 10,000 residents", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "data": {"url": "data/received_by_state.csv"},
+      "transform": [
+        {"filter": "datum.group == animal"},
+        {"joinaggregate": [{"op": "max", "field": "per_10k_2425", "as": "mx"}]},
+        {
+          "lookup": "state",
+          "from": {
+            "data": {"url": "data/state_centroids.csv"},
+            "key": "state",
+            "fields": ["lon", "lat"]
+          }
+        },
+        {
+          "calculate": "datum.state == 'ACT' ? +datum.lon + 2.2 : +datum.lon",
+          "as": "lon_l"
+        },
+        {
+          "calculate": "datum.state == 'ACT' ? +datum.lat - 0.8 : +datum.lat",
+          "as": "lat_l"
+        },
+        {
+          "calculate": "datum.state + ' ' + format(datum.per_10k_2425, '.1f')",
+          "as": "label"
+        }
+      ],
+        "encoding": {
+        "longitude": {"field": "lon_l", "type": "quantitative"},
+        "latitude": {"field": "lat_l", "type": "quantitative"},
+        "text": {"field": "label"}
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 700,
+            "color": "#0F1B2D",
+            "stroke": "#0F1B2D",
+            "strokeWidth": 4,
+            "strokeJoin": "round",
+            "opacity": 0.75
+          }
+        },
+        {"mark": {"type": "text", "fontSize": 12, "fontWeight": 700, "color": "#FFFFFF"}}
+      ]
+    }
+  ]
+}

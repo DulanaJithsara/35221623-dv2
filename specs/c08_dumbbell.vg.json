@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart: total animals received by each state/territory RSPCA in 2023-24 vs 2024-25, sorted by percentage change. Source: RSPCA National Statistics 2024-25, Table 4.",
+  "width": "container",
+  "height": 300,
+  "data": {"url": "data/received_by_state.csv"},
+  "transform": [
+    {"filter": "datum.group == 'All animals'"},
+    {
+      "calculate": "(datum.received_2425 - datum.received_2324) / datum.received_2324",
+      "as": "pct_change"
+    },
+    {"fold": ["received_2324", "received_2425"], "as": ["year_key", "received"]},
+    {
+      "calculate": "datum.year_key == 'received_2324' ? '2023–24' : '2024–25'",
+      "as": "year"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "state_name",
+      "type": "nominal",
+      "title": null,
+      "sort": {"field": "pct_change", "order": "ascending"},
+      "axis": {"domain": false, "ticks": false, "labelPadding": 8, "labelLimit": 220}
+    },
+    "x": {
+      "field": "received",
+      "type": "quantitative",
+      "title": "Animals received",
+      "scale": {"domain": [0, 50000]},
+      "axis": {"format": ",.0f", "tickCount": 5, "grid": true}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#FFB547", "strokeWidth": 2},
+      "encoding": {"detail": {"field": "state_name"}}
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 110,
+              "strokeWidth": 2,
+        "opacity": 1
+      },
+      "encoding": {
+        "fill": {
+          "field": "year",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["2023–24", "2024–25"], "range": ["#172A45", "#FFB547"]},
+          "legend": {"orient": "top", "direction": "horizontal"}
+        },
+        "stroke": {
+          "field": "year",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["2023–24", "2024–25"], "range": ["#E9EEF5", "#FFB547"]}
+        },
+        "tooltip": [
+          {"field": "state_name", "title": "RSPCA"},
+          {"field": "year", "title": "Year"},
+          {"field": "received", "title": "Animals received", "format": ","},
+          {"field": "pct_change", "title": "Change on previous year", "format": "+.1%"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.year == '2024–25'"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 11.5,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {"datum": 50000},
+        "text": {"field": "pct_change", "format": "+.0%"},
+        "color": {
+          "condition": {"test": "datum.pct_change > 0", "value": "#FFB547"},
+          "value": "#E9EEF5"
+        }
+      }
+    }
+  ],
+  "autosize": {"type": "fit-x", "contains": "padding"},
+  "padding": {"left": 0, "top": 4, "bottom": 0, "right": 40}
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap: reasons dogs and cats were euthanased in 2024-25, by state/territory RSPCA. Each column shows the share of that state's euthanasias for that species (columns add to 100%). Source: RSPCA National Statistics 2024-25, Table 3.",
+  "data": {"url": "data/euthanasia_reasons_2425.csv"},
+  "transform": [
+    {
+      "joinaggregate": [{"op": "sum", "field": "count", "as": "state_total"}],
+      "groupby": ["state", "species"]
+    },
+    {
+      "calculate": "datum.state_total > 0 ? datum.count / datum.state_total : 0",
+      "as": "share"
+    },
+    {"calculate": "datum.state + ' (' + datum.state_total + ')'", "as": "state_label"}
+  ],
+  "facet": {
+    "row": {
+      "field": "species",
+      "type": "nominal",
+      "title": null,
+      "sort": ["Dogs", "Cats"],
+      "header": {
+        "labelAngle": 0,
+        "labelAlign": "left",
+        "labelAnchor": "start",
+        "labelOrient": "top",
+        "labelFontSize": 13,
+        "labelFontWeight": 700,
+        "labelPadding": 6
+      }
+    }
+  },
+  "resolve": {"scale": {"x": "independent"}, "axis": {"x": "independent"}},
+  "spec": {
+    "width": 340,
+    "height": 170,
+    "encoding": {
+      "x": {
+        "field": "state_label",
+        "type": "nominal",
+        "title": null,
+        "sort": {"field": "state"},
+        "axis": {
+          "orient": "top",
+          "labelAngle": 0,
+          "domain": false,
+          "ticks": false,
+          "labelFontSize": 11,
+          "labelExpr": "split(datum.value, ' ')",
+          "labelLineHeight": 13,
+          "labelPadding": 18,
+          "labelBaseline": "bottom"
+        }
+      },
+      "y": {
+        "field": "reason",
+        "type": "nominal",
+        "title": null,
+        "sort": ["Medical", "Behavioural", "Infectious disease", "Legal", "Other"],
+        "axis": {"domain": false, "ticks": false, "labelPadding": 8}
+      }
+    },
+    "layer": [
+      {
+        "mark": {"type": "rect", "stroke": "#172A45", "strokeWidth": 2, "cornerRadius": 2},
+        "encoding": {
+          "color": {
+            "field": "share",
+            "type": "quantitative",
+            "title": "Share of euthanasias",
+            "scale": {"domain": [0, 1], "range": ["#1F3556", "#CC4574"]},
+            "legend": {
+              "format": ".0%",
+              "orient": "bottom",
+              "direction": "horizontal",
+              "gradientLength": 200,
+              "title": "Share of this state's euthanasias",
+              "titleLimit": 260
+            }
+          },
+          "tooltip": [
+            {"field": "species", "title": "Animal"},
+            {"field": "state", "title": "RSPCA"},
+            {"field": "reason", "title": "Reason"},
+            {"field": "count", "title": "Animals euthanased", "format": ","},
+            {"field": "share", "title": "Share of this state's total", "format": ".0%"}
+          ]
+        }
+      },
+      {
+        "transform": [{"filter": "datum.share >= 0.05"}],
+        "mark": {"type": "text", "fontSize": 11, "fontWeight": 700, "color": "#FFFFFF"},
+        "encoding": {
+          "text": {"field": "share", "format": ".0%"}
+        }
+      }
+    ]
+  }
+}

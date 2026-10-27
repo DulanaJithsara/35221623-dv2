@@ -2,19 +2,14 @@
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Treemap (Vega): all 77,464 animals received in 2024-25, nested by animal group then by state/territory RSPCA. Area = number of animals. Source: RSPCA National Statistics 2024-25, Table 4.",
   "width": 700,
-  "height": 380,
+  "height": 460,
   "padding": 0,
   "autosize": "none",
   "data": [
     {
       "name": "source",
       "url": "data/received_by_state.csv",
-      "format": {
-        "type": "csv",
-        "parse": {
-          "received_2425": "number"
-        }
-      },
+      "format": {"type": "csv", "parse": {"received_2425": "number"}},
       "transform": [
         {
           "type": "filter",
@@ -28,18 +23,10 @@
       "transform": [
         {
           "type": "aggregate",
-          "groupby": [
-            "group"
-          ],
-          "fields": [
-            "received_2425"
-          ],
-          "ops": [
-            "sum"
-          ],
-          "as": [
-            "total"
-          ]
+          "groupby": ["group"],
+          "fields": ["received_2425"],
+          "ops": ["sum"],
+          "as": ["total"]
         }
       ]
     },
@@ -47,34 +34,18 @@
       "name": "tree",
       "source": "source",
       "transform": [
-        {
-          "type": "nest",
-          "keys": [
-            "group"
-          ],
-          "generate": true
-        },
+        {"type": "nest", "keys": ["group"], "generate": true},
         {
           "type": "treemap",
           "field": "received_2425",
-          "sort": {
-            "field": "value",
-            "order": "descending"
-          },
+          "sort": {"field": "value", "order": "descending"},
           "round": true,
           "method": "squarify",
           "ratio": 1.4,
           "paddingInner": 2,
           "paddingTop": 22,
           "paddingOuter": 0,
-          "size": [
-            {
-              "signal": "width"
-            },
-            {
-              "signal": "height"
-            }
-          ]
+          "size": [{"signal": "width"}, {"signal": "height"}]
         }
       ]
     },
@@ -82,23 +53,14 @@
       "name": "groups",
       "source": "tree",
       "transform": [
-        {
-          "type": "filter",
-          "expr": "datum.children && datum.depth == 1"
-        },
+        {"type": "filter", "expr": "datum.children && datum.depth == 1"},
         {
           "type": "lookup",
           "from": "groupTotals",
           "key": "group",
-          "fields": [
-            "key"
-          ],
-          "values": [
-            "total"
-          ],
-          "as": [
-            "total"
-          ]
+          "fields": ["key"],
+          "values": ["total"],
+          "as": ["total"]
         }
       ]
     },
@@ -106,20 +68,9 @@
       "name": "leaves",
       "source": "tree",
       "transform": [
-        {
-          "type": "filter",
-          "expr": "!datum.children"
-        },
-        {
-          "type": "formula",
-          "as": "w",
-          "expr": "datum.x1 - datum.x0"
-        },
-        {
-          "type": "formula",
-          "as": "h",
-          "expr": "datum.y1 - datum.y0"
-        }
+        {"type": "filter", "expr": "!datum.children"},
+        {"type": "formula", "as": "w", "expr": "datum.x1 - datum.x0"},
+        {"type": "formula", "as": "h", "expr": "datum.y1 - datum.y0"}
       ]
     }
   ],
@@ -127,173 +78,88 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": [
-        "Dogs",
-        "Cats",
-        "Wildlife",
-        "Other pets",
-        "Livestock & horses"
-      ],
-      "range": [
-        "#3A93E0",
-        "#E26A3A",
-        "#1FA982",
-        "#977AE6",
-        "#B88826"
-      ]
+      "domain": ["Dogs", "Cats", "Wildlife", "Other pets", "Livestock & horses"],
+      "range": ["#3A93E0", "#E26A3A", "#1FA982", "#977AE6", "#B88826"]
     }
   ],
   "marks": [
     {
       "type": "rect",
-      "from": {
-        "data": "groups"
-      },
+      "from": {"data": "groups"},
       "encode": {
-        "enter": {
-          "x": {
-            "field": "x0"
-          },
-          "y": {
-            "field": "y0"
-          },
-          "x2": {
-            "field": "x1"
-          },
-          "y2": {
-            "field": "y1"
-          },
-          "fill": {
-            "value": "#172A45"
-          }
+        "update": {
+          "x": {"field": "x0"},
+          "y": {"field": "y0"},
+          "x2": {"field": "x1"},
+          "y2": {"field": "y1"},
+          "fill": {"value": "#172A45"}
         }
       }
     },
     {
       "type": "text",
-      "from": {
-        "data": "groups"
-      },
+      "from": {"data": "groups"},
       "encode": {
-        "enter": {
-          "x": {
-            "signal": "datum.x0 + 2"
-          },
-          "y": {
-            "signal": "datum.y0 + 15"
-          },
+        "update": {
+          "x": {"signal": "datum.x0 + 2"},
+          "y": {"signal": "datum.y0 + 15"},
           "text": {
-            "signal": "(datum.x1 - datum.x0 > 150) ? datum.key + '  ' + format(datum.total, ',') : datum.key"
+            "signal": "(datum.x1 - datum.x0 > 150) ? datum.key + '  ' + format(datum.total, ',') : (datum.x1 - datum.x0 > 70 ? datum.key : '')"
           },
-          "fontSize": {
-            "value": 12
-          },
-          "fontWeight": {
-            "value": 700
-          },
-          "fill": {
-            "value": "#E9EEF5"
-          },
-          "limit": {
-            "signal": "datum.x1 - datum.x0 - 4"
-          }
+          "fontSize": {"signal": "(datum.x1 - datum.x0 > 90) ? 12 : 11"},
+          "fontWeight": {"value": 700},
+          "fill": {"value": "#E9EEF5"},
+          "limit": {"signal": "datum.x1 - datum.x0 - 4"}
         }
       }
     },
     {
       "type": "rect",
-      "from": {
-        "data": "leaves"
-      },
+      "from": {"data": "leaves"},
       "encode": {
-        "enter": {
-          "x": {
-            "field": "x0"
-          },
-          "y": {
-            "field": "y0"
-          },
-          "x2": {
-            "field": "x1"
-          },
-          "y2": {
-            "field": "y1"
-          },
-          "fill": {
-            "scale": "color",
-            "field": "group"
-          },
-          "cornerRadius": {
-            "value": 2
-          },
+        "update": {
+          "x": {"field": "x0"},
+          "y": {"field": "y0"},
+          "x2": {"field": "x1"},
+          "y2": {"field": "y1"},
+          "fill": {"scale": "color", "field": "group"},
+          "cornerRadius": {"value": 2},
           "tooltip": {
             "signal": "{'Animal group': datum.group, 'RSPCA': datum.state_name, 'Animals received': format(datum.received_2425, ','), 'Share of all 77,464': format(datum.received_2425 / 77464, '.1%')}"
-          }
+          },
+          "fillOpacity": {"value": 0.92}
         },
+        "hover": {"fillOpacity": {"value": 0.7}}
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "leaves"},
+      "interactive": false,
+      "encode": {
         "update": {
-          "fillOpacity": {
-            "value": 0.92
-          }
-        },
-        "hover": {
-          "fillOpacity": {
-            "value": 0.7
-          }
+          "x": {"signal": "datum.x0 + (datum.w > 44 ? 6 : 3)"},
+          "y": {"signal": "datum.y0 + (datum.h > 30 ? 17 : 13)"},
+          "text": {"signal": "(datum.w > 28 && datum.h > 18) ? datum.state : ''"},
+          "fontSize": {"signal": "datum.w > 44 ? 12 : 10"},
+          "fontWeight": {"value": 700},
+          "fill": {"value": "#0F1B2D"}
         }
       }
     },
     {
       "type": "text",
-      "from": {
-        "data": "leaves"
-      },
+      "from": {"data": "leaves"},
       "interactive": false,
       "encode": {
-        "enter": {
-          "x": {
-            "signal": "datum.x0 + 6"
-          },
-          "y": {
-            "signal": "datum.y0 + 17"
-          },
+        "update": {
+          "x": {"signal": "datum.x0 + 6"},
+          "y": {"signal": "datum.y0 + 32"},
           "text": {
-            "signal": "(datum.w > 44 && datum.h > 22) ? datum.state : ''"
+            "signal": "(datum.w > 50 && datum.h > 38) ? format(datum.received_2425, ',') : ''"
           },
-          "fontSize": {
-            "value": 12
-          },
-          "fontWeight": {
-            "value": 700
-          },
-          "fill": {
-            "value": "#0F1B2D"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {
-        "data": "leaves"
-      },
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "x": {
-            "signal": "datum.x0 + 6"
-          },
-          "y": {
-            "signal": "datum.y0 + 32"
-          },
-          "text": {
-            "signal": "(datum.w > 56 && datum.h > 40) ? format(datum.received_2425, ',') : ''"
-          },
-          "fontSize": {
-            "value": 11
-          },
-          "fill": {
-            "value": "#0F1B2D"
-          }
+          "fontSize": {"value": 11},
+          "fill": {"value": "#0F1B2D"}
         }
       }
     }

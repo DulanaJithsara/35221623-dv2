@@ -3,175 +3,73 @@
   "description": "Marimekko (mosaic) chart: column width = number of animals in each group; segment height = share of each outcome. Source: RSPCA National Statistics 2024-25, Table 4 (outcome rows).",
   "width": "container",
   "height": 360,
-  "data": {
-    "url": "data/outcomes_2425.csv"
-  },
+  "data": {"url": "data/outcomes_2425.csv"},
   "transform": [
     {
-      "aggregate": [
-        {
-          "op": "sum",
-          "field": "count",
-          "as": "n"
-        }
-      ],
-      "groupby": [
-        "group",
-        "outcome_family"
-      ]
+      "aggregate": [{"op": "sum", "field": "count", "as": "n"}],
+      "groupby": ["group", "outcome_family"]
     },
     {
       "calculate": "indexof(['Reunited with owner','Rehomed','Released to the wild','Still in care or transferred','Other / died in care','Euthanased'], datum.outcome_family)",
       "as": "o_order"
     },
     {
-      "joinaggregate": [
-        {
-          "op": "sum",
-          "field": "n",
-          "as": "group_total"
-        }
-      ],
-      "groupby": [
-        "group"
-      ]
+      "joinaggregate": [{"op": "sum", "field": "n", "as": "group_total"}],
+      "groupby": ["group"]
     },
-    {
-      "joinaggregate": [
-        {
-          "op": "sum",
-          "field": "n",
-          "as": "grand_total"
-        }
-      ]
-    },
+    {"joinaggregate": [{"op": "sum", "field": "n", "as": "grand_total"}]},
     {
       "calculate": "indexof(['Wildlife','Cats','Dogs','Other pets','Livestock & horses'], datum.group)",
       "as": "g_order"
     },
     {
-      "window": [
-        {
-          "op": "sum",
-          "field": "n",
-          "as": "x_cum"
-        }
-      ],
-      "sort": [
-        {
-          "field": "g_order"
-        },
-        {
-          "field": "o_order"
-        }
-      ],
-      "frame": [
-        null,
-        0
-      ]
+      "window": [{"op": "sum", "field": "n", "as": "x_cum"}],
+      "sort": [{"field": "g_order"}, {"field": "o_order"}],
+      "frame": [null, 0]
     },
     {
-      "window": [
-        {
-          "op": "sum",
-          "field": "n",
-          "as": "y_cum"
-        }
-      ],
-      "groupby": [
-        "group"
-      ],
-      "sort": [
-        {
-          "field": "o_order"
-        }
-      ],
-      "frame": [
-        null,
-        0
-      ]
+      "window": [{"op": "sum", "field": "n", "as": "y_cum"}],
+      "groupby": ["group"],
+      "sort": [{"field": "o_order"}],
+      "frame": [null, 0]
     },
     {
-      "joinaggregate": [
-        {
-          "op": "max",
-          "field": "x_cum",
-          "as": "x_group_end"
-        }
-      ],
-      "groupby": [
-        "group"
-      ]
+      "joinaggregate": [{"op": "max", "field": "x_cum", "as": "x_group_end"}],
+      "groupby": ["group"]
     },
     {
       "calculate": "(datum.x_group_end - datum.group_total) / datum.grand_total",
       "as": "x0"
     },
-    {
-      "calculate": "datum.x_group_end / datum.grand_total",
-      "as": "x1"
-    },
-    {
-      "calculate": "(datum.y_cum - datum.n) / datum.group_total",
-      "as": "y0"
-    },
-    {
-      "calculate": "datum.y_cum / datum.group_total",
-      "as": "y1"
-    },
-    {
-      "calculate": "datum.n / datum.group_total",
-      "as": "share"
-    },
-    {
-      "calculate": "(datum.x0 + datum.x1) / 2",
-      "as": "x_mid"
-    },
-    {
-      "calculate": "(datum.y0 + datum.y1) / 2",
-      "as": "y_mid"
-    }
+    {"calculate": "datum.x_group_end / datum.grand_total", "as": "x1"},
+    {"calculate": "(datum.y_cum - datum.n) / datum.group_total", "as": "y0"},
+    {"calculate": "datum.y_cum / datum.group_total", "as": "y1"},
+    {"calculate": "datum.n / datum.group_total", "as": "share"},
+    {"calculate": "(datum.x0 + datum.x1) / 2", "as": "x_mid"},
+    {"calculate": "(datum.y0 + datum.y1) / 2", "as": "y_mid"}
   ],
   "layer": [
     {
-      "mark": {
-        "type": "rect",
-        "stroke": "#172A45",
-        "strokeWidth": 2
-      },
+      "mark": {"type": "rect", "stroke": "#172A45", "strokeWidth": 2},
       "encoding": {
         "x": {
           "field": "x0",
           "type": "quantitative",
           "axis": null,
-          "scale": {
-            "domain": [
-              0,
-              1
-            ]
-          }
+          "scale": {"domain": [0, 1]}
         },
-        "x2": {
-          "field": "x1"
-        },
+        "x2": {"field": "x1"},
         "y": {
           "field": "y0",
           "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              1
-            ]
-          },
+          "scale": {"domain": [0, 1]},
           "axis": {
             "format": ".0%",
             "title": "Share of animals in the group",
             "tickCount": 5
           }
         },
-        "y2": {
-          "field": "y1"
-        },
+        "y2": {"field": "y1"},
         "color": {
           "field": "outcome_family",
           "type": "nominal",
@@ -185,14 +83,7 @@
               "Other / died in care",
               "Euthanased"
             ],
-            "range": [
-              "#2A9D8F",
-              "#7FD6CB",
-              "#CDEFEA",
-              "#4A6285",
-              "#33496B",
-              "#E8668F"
-            ]
+            "range": ["#1B7268", "#7FD6CB", "#CDEFEA", "#4A6285", "#33496B", "#E8668F"]
           },
           "legend": {
             "orient": "top",
@@ -203,59 +94,24 @@
           }
         },
         "tooltip": [
-          {
-            "field": "group",
-            "title": "Animal group"
-          },
-          {
-            "field": "outcome_family",
-            "title": "Outcome"
-          },
-          {
-            "field": "n",
-            "title": "Animals",
-            "format": ","
-          },
-          {
-            "field": "share",
-            "title": "Share of group",
-            "format": ".1%"
-          },
-          {
-            "field": "group_total",
-            "title": "Group total (outcome rows)",
-            "format": ","
-          }
+          {"field": "group", "title": "Animal group"},
+          {"field": "outcome_family", "title": "Outcome"},
+          {"field": "n", "title": "Animals", "format": ","},
+          {"field": "share", "title": "Share of group", "format": ".1%"},
+          {"field": "group_total", "title": "Group total (outcome rows)", "format": ","}
         ]
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.share >= 0.08 && (datum.x1 - datum.x0) > 0.05"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "fontSize": 11,
-        "fontWeight": 700
-      },
+      "transform": [{"filter": "datum.share >= 0.08 && (datum.x1 - datum.x0) > 0.05"}],
+      "mark": {"type": "text", "fontSize": 11, "fontWeight": 700},
       "encoding": {
-        "x": {
-          "field": "x_mid",
-          "type": "quantitative"
-        },
-        "y": {
-          "field": "y_mid",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "share",
-          "format": ".0%"
-        },
+        "x": {"field": "x_mid", "type": "quantitative"},
+        "y": {"field": "y_mid", "type": "quantitative"},
+        "text": {"field": "share", "format": ".0%"},
         "color": {
           "condition": {
-            "test": "datum.outcome_family == 'Still in care or transferred' || datum.outcome_family == 'Other / died in care'",
+            "test": "datum.outcome_family == 'Still in care or transferred' || datum.outcome_family == 'Other / died in care' || datum.outcome_family == 'Reunited with owner'",
             "value": "#E9EEF5"
           },
           "value": "#0F1B2D"
@@ -266,37 +122,18 @@
       "transform": [
         {
           "aggregate": [
-            {
-              "op": "min",
-              "field": "x0",
-              "as": "x0"
-            },
-            {
-              "op": "max",
-              "field": "x1",
-              "as": "x1"
-            },
-            {
-              "op": "max",
-              "field": "group_total",
-              "as": "t"
-            }
+            {"op": "min", "field": "x0", "as": "x0"},
+            {"op": "max", "field": "x1", "as": "x1"},
+            {"op": "max", "field": "group_total", "as": "t"}
           ],
-          "groupby": [
-            "group"
-          ]
+          "groupby": ["group"]
         },
-        {
-          "calculate": "(datum.x0 + datum.x1) / 2",
-          "as": "xm"
-        },
+        {"calculate": "(datum.x0 + datum.x1) / 2", "as": "xm"},
         {
           "calculate": "(datum.x1 - datum.x0) > 0.1 ? datum.group + ' (' + format(datum.t, ',') + ')' : datum.group",
           "as": "lab"
         },
-        {
-          "filter": "(datum.x1 - datum.x0) >= 0.04"
-        }
+        {"filter": "(datum.x1 - datum.x0) >= 0.04"}
       ],
       "mark": {
         "type": "text",
@@ -308,72 +145,37 @@
         "limit": 140
       },
       "encoding": {
-        "x": {
-          "field": "xm",
-          "type": "quantitative"
-        },
-        "y": {
-          "datum": 0,
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "lab"
-        }
+        "x": {"field": "xm", "type": "quantitative"},
+        "y": {"datum": 0, "type": "quantitative"},
+        "text": {"field": "lab"}
       }
     },
     {
       "transform": [
         {
           "aggregate": [
-            {
-              "op": "min",
-              "field": "x0",
-              "as": "x0"
-            },
-            {
-              "op": "max",
-              "field": "x1",
-              "as": "x1"
-            },
-            {
-              "op": "max",
-              "field": "group_total",
-              "as": "t"
-            }
+            {"op": "min", "field": "x0", "as": "x0"},
+            {"op": "max", "field": "x1", "as": "x1"},
+            {"op": "max", "field": "group_total", "as": "t"}
           ],
-          "groupby": [
-            "group"
-          ]
+          "groupby": ["group"]
         },
-        {
-          "filter": "(datum.x1 - datum.x0) < 0.04"
-        },
-        {
-          "calculate": "datum.group + ' (' + format(datum.t, ',') + ')'",
-          "as": "lab"
-        }
+        {"filter": "(datum.x1 - datum.x0) < 0.04"},
+        {"calculate": "datum.group + ' (' + format(datum.t, ',') + ')  ↓'", "as": "lab"}
       ],
       "mark": {
         "type": "text",
-        "baseline": "top",
+        "baseline": "bottom",
         "align": "right",
-        "dy": 24,
+        "dy": -6,
         "fontSize": 11,
-        "fontStyle": "italic",
-        "color": "#9DAEC4"
+        "fontWeight": 700,
+        "color": "#E9EEF5"
       },
       "encoding": {
-        "x": {
-          "field": "x1",
-          "type": "quantitative"
-        },
-        "y": {
-          "datum": 0,
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "lab"
-        }
+        "x": {"field": "x1", "type": "quantitative"},
+        "y": {"datum": 1, "type": "quantitative"},
+        "text": {"field": "lab"}
       }
     }
   ]

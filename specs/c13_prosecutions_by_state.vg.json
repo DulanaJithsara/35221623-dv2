@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar chart: prosecutions finalised by each state/territory RSPCA in 2024-25 (light bar), with the number that were successful (dark inner bar). Source: RSPCA National Statistics 2024-25, Table 5.",
+  "width": "container",
+  "height": 300,
+  "data": {"url": "data/inspectorate_by_state_2425.csv"},
+  "transform": [
+    {
+      "calculate": "datum.prosecutions_finalised > 0 ? datum.successful_prosecutions / datum.prosecutions_finalised : 0",
+      "as": "success_rate"
+    },
+    {
+      "calculate": "datum.successful_prosecutions + ' of ' + datum.prosecutions_finalised + ' successful'",
+      "as": "label"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": ["NSW", "WA", "VIC", "SA", "ACT", "QLD", "TAS"],
+      "axis": {"domain": false, "ticks": false, "labelPadding": 8, "labelFontWeight": 700}
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#3F5679",
+        "height": {"band": 0.72},
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "prosecutions_finalised",
+          "type": "quantitative",
+          "title": "Prosecutions finalised in 2024–25",
+          "scale": {"domain": [0, 240]}
+        },
+        "color": {
+          "datum": "Prosecutions finalised",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Prosecutions finalised", "Successful prosecutions"],
+            "range": ["#3F5679", "#FFB547"]
+          },
+          "legend": {"orient": "top", "direction": "horizontal", "title": null, "symbolType": "square"}
+        },
+        "tooltip": [
+          {"field": "state_name", "title": "RSPCA"},
+          {
+            "field": "complaints_investigated",
+            "title": "Complaints investigated",
+            "format": ","
+          },
+          {"field": "prosecutions_finalised", "title": "Prosecutions finalised"},
+          {"field": "successful_prosecutions", "title": "Successful"},
+          {"field": "success_rate", "title": "Success rate", "format": ".0%"},
+          {"field": "charges_laid", "title": "Charges laid", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#FFB547",
+        "height": {"band": 0.36},
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "x": {"field": "successful_prosecutions", "type": "quantitative"},
+        "color": {"datum": "Successful prosecutions", "type": "nominal"},
+        "tooltip": [
+          {"field": "state_name", "title": "RSPCA"},
+          {"field": "successful_prosecutions", "title": "Successful prosecutions"},
+          {"field": "success_rate", "title": "Success rate", "format": ".0%"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 11.5,
+        "color": "#E9EEF5"
+      },
+      "encoding": {
+        "x": {"field": "prosecutions_finalised", "type": "quantitative"},
+        "text": {"field": "label"}
+      }
+    }
+  ],
+  "autosize": {"type": "fit-x", "contains": "padding"},
+  "padding": {"left": 0, "top": 4, "bottom": 0, "right": 125}
+}

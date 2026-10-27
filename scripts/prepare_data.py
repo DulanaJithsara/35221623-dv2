@@ -1,24 +1,3 @@
-"""
-prepare_data.py — builds the tidy CSV files used by the Vega-Lite charts.
-
-Sources
-  1. RSPCA Australia, National Statistics 2024-2025 (Tables 1-6)
-     https://www.rspca.org.au/about/annual-statistics/
-  2. Australian Bureau of Statistics, National, state and territory population,
-     June 2025 (estimated resident population, released 19 Dec 2025)
-     https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2025
-
-Cleaning notes (also described in the submission):
-  * Figures were transcribed from the RSPCA PDF tables into the lists below.
-  * In the PDF's text layer the NSW and NT columns of Tables 3 and 4 come out
-    swapped. This was corrected by checking against the RSPCA NSW Annual Report
-    2025 (5,994 animals adopted = sum of the corrected NSW "Rehomed" row).
-  * "Other animals" outcome rows in Table 4 do not sum exactly to the reported
-    state totals (6,221 vs 6,267). Reported totals are used for totals; outcome
-    rows are used for outcome shares. No values were altered.
-  * Species are grouped into five groups for consistent colour:
-    Dogs, Cats, Wildlife, Livestock & horses, Other pets.
-"""
 import csv
 import os
 
@@ -31,18 +10,14 @@ STATE_NAMES = {
     "NT": "Northern Territory", "QLD": "Queensland", "SA": "South Australia",
     "TAS": "Tasmania", "VIC": "Victoria", "WA": "Western Australia",
 }
-# ABS ERP 30 June 2025 ('000)
+
 POP = {"NSW": 8593.9, "VIC": 7074.5, "QLD": 5669.8, "SA": 1902.3,
        "WA": 3043.7, "TAS": 576.0, "NT": 264.4, "ACT": 484.8}
 
-
 def fix(row):
-    """PDF text order is ACT, NT, NSW, QLD, SA, TAS, VIC, WA -> return in STATES order."""
     act, nt, nsw, qld, sa, tas, vic, wa = row
     return [act, nsw, nt, qld, sa, tas, vic, wa]
 
-
-# ---------------- Table 4: animals received by state, 2024-25 ----------------
 T4 = {
     "Dogs": {
         "Reclaimed": [109, 0, 229, 1647, 501, 0, 646, 71],
@@ -116,7 +91,6 @@ GROUP = {"Dogs": "Dogs", "Cats": "Cats", "Wildlife": "Wildlife",
          "Horses": "Livestock & horses", "Livestock": "Livestock & horses",
          "Other pets": "Other pets"}
 
-# Outcome families used for colour in the Marimekko / butterfly charts
 OUTCOME_FAMILY = {
     "Reclaimed": "Reunited with owner", "Returned": "Reunited with owner",
     "Rehomed": "Rehomed", "Released to the wild": "Released to the wild",
@@ -125,7 +99,6 @@ OUTCOME_FAMILY = {
     "Euthanased": "Euthanased", "Other / died in care": "Other / died in care",
 }
 
-# sanity checks against reported totals
 for sp, rows in T4.items():
     for i in range(8):
         s = sum(v[i] for k, v in rows.items() if not k.startswith("_"))
@@ -135,7 +108,6 @@ col_tot = [sum(T4[sp]["_total"][i] for sp in T4) for i in range(8)]
 assert fix(col_tot) == TOTAL_ALL, (fix(col_tot), TOTAL_ALL)
 assert sum(TOTAL_ALL) == 77464
 
-# outcomes_2425.csv (long)
 with open(os.path.join(OUT, "outcomes_2425.csv"), "w", newline="") as f:
     w = csv.writer(f)
     w.writerow(["state", "species", "group", "outcome", "outcome_family", "count"])
@@ -146,7 +118,6 @@ with open(os.path.join(OUT, "outcomes_2425.csv"), "w", newline="") as f:
             for st, v in zip(STATES, fix(vals)):
                 w.writerow([st, sp, GROUP[sp], outcome, OUTCOME_FAMILY[outcome], v])
 
-# received_by_state.csv (group totals, both years)
 with open(os.path.join(OUT, "received_by_state.csv"), "w", newline="") as f:
     w = csv.writer(f)
     w.writerow(["state", "state_name", "group", "received_2425", "received_2324",
@@ -165,7 +136,6 @@ with open(os.path.join(OUT, "received_by_state.csv"), "w", newline="") as f:
                     TOTAL_ALL_LAST[st_i], int(pop),
                     round(TOTAL_ALL[st_i] / pop * 10000, 2)])
 
-# ---------------- Table 3: reasons for euthanasia ----------------
 T3 = {
     "Dogs": {"Infectious disease": [0, 0, 6, 28, 3, 0, 4, 22],
              "Medical": [25, 7, 235, 410, 109, 17, 97, 40],
@@ -185,12 +155,11 @@ with open(os.path.join(OUT, "euthanasia_reasons_2425.csv"), "w", newline="") as 
         for reason, vals in rows.items():
             for st, v in zip(STATES, fix(vals)):
                 w.writerow([st, sp, reason, v])
-    # cross-check with Table 4 euthanased rows
+
     for sp in T3:
         tot = [sum(T3[sp][r][i] for r in T3[sp]) for i in range(8)]
         assert tot == T4[sp]["Euthanased"], sp
 
-# ---------------- Table 5: inspectorate by state (NT has no RSPCA enforcement) ----
 T5_STATES = ["ACT", "NSW", "QLD", "SA", "TAS", "VIC", "WA"]
 T5 = {
     "complaints_investigated": [744, 16713, 13874, 5125, 1915, 10206, 7195],
@@ -211,7 +180,6 @@ with open(os.path.join(OUT, "inspectorate_by_state_2425.csv"), "w", newline="") 
         w.writerow([st, STATE_NAMES[st], int(pop), *[T5[k][i] for k in T5],
                     round(T5["complaints_investigated"][i] / pop * 10000, 1)])
 
-# ---------------- Table 2: national trend 2020-21 to 2024-25 ----------------
 YEARS5 = ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25"]
 T2 = {
     "Dogs": {"other": [19809, 16737, 15903, 14626, 13084],
@@ -235,7 +203,6 @@ with open(os.path.join(OUT, "national_trend.csv"), "w", newline="") as f:
             w.writerow([y, g, T2[g]["total"][i], T2[g]["euth"][i],
                         round(T2[g]["euth"][i] / T2[g]["total"][i] * 100, 1)])
 
-# ---------------- Table 6: complaints & prosecutions 2019-20 to 2024-25 ----------
 with open(os.path.join(OUT, "inspectorate_trend.csv"), "w", newline="") as f:
     w = csv.writer(f)
     w.writerow(["year", "complaints", "prosecutions"])

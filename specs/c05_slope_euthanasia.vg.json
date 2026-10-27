@@ -3,34 +3,22 @@
   "description": "Slope chart: share of animals euthanased in 2020-21 vs 2024-25, by animal group. Dogs are highlighted because they are the only group whose rate rose sharply. Source: RSPCA National Statistics 2024-25, Table 2.",
   "width": "container",
   "height": 300,
-  "data": {
-    "url": "data/national_trend.csv"
-  },
+  "data": {"url": "data/national_trend.csv"},
   "transform": [
-    {
-      "filter": "datum.year == '2020-21' || datum.year == '2024-25'"
-    },
+    {"filter": "datum.year == '2020-21' || datum.year == '2024-25'"},
     {
       "calculate": "datum.group == 'Other animals' ? 'Wildlife & other' : datum.group",
       "as": "series"
     },
-    {
-      "calculate": "datum.euthanased_pct / 100",
-      "as": "rate"
-    },
-    {
-      "calculate": "datum.series + '  ' + format(datum.rate, '.1%')",
-      "as": "end_label"
-    }
+    {"calculate": "datum.euthanased_pct / 100", "as": "rate"},
+    {"calculate": "datum.series + '  ' + format(datum.rate, '.1%')", "as": "end_label"}
   ],
   "encoding": {
     "x": {
       "field": "year",
       "type": "ordinal",
       "title": null,
-      "scale": {
-        "padding": 0.9
-      },
+      "scale": {"padding": 0.9},
       "axis": {
         "labelAngle": 0,
         "orient": "top",
@@ -46,12 +34,7 @@
       "field": "rate",
       "type": "quantitative",
       "title": null,
-      "scale": {
-        "domain": [
-          0,
-          0.6
-        ]
-      },
+      "scale": {"domain": [0, 0.6]},
       "axis": null
     },
     "color": {
@@ -59,34 +42,18 @@
       "type": "nominal",
       "legend": null,
       "scale": {
-        "domain": [
-          "Dogs",
-          "Cats",
-          "Wildlife & other"
-        ],
-        "range": [
-          "#3A93E0",
-          "#5C6F8E",
-          "#5C6F8E"
-        ]
+        "domain": ["Dogs", "Cats", "Wildlife & other"],
+        "range": ["#3A93E0", "#E26A3A", "#1FA982"]
       }
     },
-    "detail": {
-      "field": "series"
-    }
+    "detail": {"field": "series"}
   },
   "layer": [
     {
-      "mark": {
-        "type": "line",
-        "strokeWidth": 2
-      },
+      "mark": {"type": "line", "strokeWidth": 2},
       "encoding": {
         "strokeWidth": {
-          "condition": {
-            "test": "datum.series == 'Dogs'",
-            "value": 3.5
-          },
+          "condition": {"test": "datum.series == 'Dogs'", "value": 3.5},
           "value": 2
         }
       }
@@ -101,38 +68,16 @@
       },
       "encoding": {
         "tooltip": [
-          {
-            "field": "series",
-            "title": "Animal group"
-          },
-          {
-            "field": "year",
-            "title": "Financial year"
-          },
-          {
-            "field": "euthanased",
-            "title": "Euthanased",
-            "format": ","
-          },
-          {
-            "field": "received",
-            "title": "Received",
-            "format": ","
-          },
-          {
-            "field": "rate",
-            "title": "Share euthanased",
-            "format": ".1%"
-          }
+          {"field": "series", "title": "Animal group"},
+          {"field": "year", "title": "Financial year"},
+          {"field": "euthanased", "title": "Euthanased", "format": ","},
+          {"field": "received", "title": "Received", "format": ","},
+          {"field": "rate", "title": "Share euthanased", "format": ".1%"}
         ]
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year == '2024-25' && (datum.series == 'Dogs')"
-        }
-      ],
+      "transform": [{"filter": "datum.year == '2024-25' && (datum.series == 'Dogs')"}],
       "mark": {
         "type": "text",
         "align": "left",
@@ -142,18 +87,10 @@
         "fontWeight": 700,
         "color": "#7DB9F2"
       },
-      "encoding": {
-        "text": {
-          "field": "end_label"
-        }
-      }
+      "encoding": {"text": {"field": "end_label"}}
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year == '2024-25' && (datum.series == 'Cats')"
-        }
-      ],
+      "transform": [{"filter": "datum.year == '2024-25' && (datum.series == 'Cats')"}],
       "mark": {
         "type": "text",
         "align": "left",
@@ -163,17 +100,11 @@
         "fontWeight": 400,
         "color": "#9DAEC4"
       },
-      "encoding": {
-        "text": {
-          "field": "end_label"
-        }
-      }
+      "encoding": {"text": {"field": "end_label"}}
     },
     {
       "transform": [
-        {
-          "filter": "datum.year == '2024-25' && (datum.series == 'Wildlife & other')"
-        }
+        {"filter": "datum.year == '2024-25' && (datum.series == 'Wildlife & other')"}
       ],
       "mark": {
         "type": "text",
@@ -184,18 +115,10 @@
         "fontWeight": 400,
         "color": "#9DAEC4"
       },
-      "encoding": {
-        "text": {
-          "field": "end_label"
-        }
-      }
+      "encoding": {"text": {"field": "end_label"}}
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year == '2020-21' && (datum.series == 'Dogs')"
-        }
-      ],
+      "transform": [{"filter": "datum.year == '2020-21' && (datum.series == 'Dogs')"}],
       "mark": {
         "type": "text",
         "align": "right",
@@ -205,19 +128,10 @@
         "fontWeight": 700,
         "color": "#7DB9F2"
       },
-      "encoding": {
-        "text": {
-          "field": "rate",
-          "format": ".1%"
-        }
-      }
+      "encoding": {"text": {"field": "rate", "format": ".1%"}}
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year == '2020-21' && (datum.series != 'Dogs')"
-        }
-      ],
+      "transform": [{"filter": "datum.year == '2020-21' && (datum.series != 'Dogs')"}],
       "mark": {
         "type": "text",
         "align": "right",
@@ -227,22 +141,9 @@
         "fontWeight": 400,
         "color": "#9DAEC4"
       },
-      "encoding": {
-        "text": {
-          "field": "rate",
-          "format": ".1%"
-        }
-      }
+      "encoding": {"text": {"field": "rate", "format": ".1%"}}
     }
   ],
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
-  },
-  "padding": {
-    "left": 0,
-    "top": 4,
-    "bottom": 0,
-    "right": 150
-  }
+  "autosize": {"type": "fit-x", "contains": "padding"},
+  "padding": {"left": 0, "top": 4, "bottom": 0, "right": 150}
 }

@@ -3,9 +3,7 @@
   "description": "Line chart: animals received nationally by the RSPCA, 2020-21 to 2024-25, by animal group. Source: RSPCA National Statistics 2024-25, Table 2.",
   "width": "container",
   "height": 300,
-  "data": {
-    "url": "data/national_trend.csv"
-  },
+  "data": {"url": "data/national_trend.csv"},
   "transform": [
     {
       "calculate": "datum.group == 'Other animals' ? 'Wildlife & other animals' : datum.group",
@@ -17,61 +15,34 @@
       "field": "year",
       "type": "ordinal",
       "title": null,
-      "axis": {
-        "labelAngle": 0,
-        "labelPadding": 8
-      }
+      "axis": {"labelAngle": 0, "labelPadding": 8}
     },
     "y": {
       "field": "received",
       "type": "quantitative",
       "title": "Animals received",
-      "scale": {
-        "domain": [
-          0,
-          45000
-        ]
-      },
-      "axis": {
-        "format": ",.0f",
-        "tickCount": 5
-      }
+      "scale": {"domain": [0, 45000]},
+      "axis": {"format": ",.0f", "tickCount": 5}
     },
     "color": {
       "field": "series",
       "type": "nominal",
       "legend": null,
       "scale": {
-        "domain": [
-          "Dogs",
-          "Cats",
-          "Wildlife & other animals"
-        ],
-        "range": [
-          "#3A93E0",
-          "#E26A3A",
-          "#7D8FA9"
-        ]
+        "domain": ["Dogs", "Cats", "Wildlife & other animals"],
+        "range": ["#3A93E0", "#E26A3A", "#1FA982"]
       }
     }
   },
   "layer": [
-    {
-      "mark": {
-        "type": "line",
-        "strokeWidth": 2.5,
-        "interpolate": "monotone"
-      }
-    },
+    {"mark": {"type": "line", "strokeWidth": 2.5, "interpolate": "monotone"}},
     {
       "params": [
         {
           "name": "hover",
           "select": {
             "type": "point",
-            "fields": [
-              "year"
-            ],
+            "fields": ["year"],
             "on": "pointerover",
             "nearest": true,
             "clear": "pointerout"
@@ -87,36 +58,18 @@
       },
       "encoding": {
         "opacity": {
-          "condition": {
-            "param": "hover",
-            "empty": false,
-            "value": 1
-          },
+          "condition": {"param": "hover", "empty": false, "value": 1},
           "value": 0.85
         },
         "tooltip": [
-          {
-            "field": "series",
-            "title": "Animal group"
-          },
-          {
-            "field": "year",
-            "title": "Financial year"
-          },
-          {
-            "field": "received",
-            "title": "Animals received",
-            "format": ","
-          }
+          {"field": "series", "title": "Animal group"},
+          {"field": "year", "title": "Financial year"},
+          {"field": "received", "title": "Animals received", "format": ","}
         ]
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year == '2024-25'"
-        }
-      ],
+      "transform": [{"filter": "datum.year == '2024-25'"}],
       "mark": {
         "type": "text",
         "align": "left",
@@ -124,21 +77,10 @@
         "fontSize": 12,
         "fontWeight": 700
       },
-      "encoding": {
-        "text": {
-          "field": "series"
-        },
-        "color": {
-          "value": "#E9EEF5"
-        }
-      }
+      "encoding": {"text": {"field": "series"}, "color": {"value": "#E9EEF5"}}
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year == '2020-21' && datum.group == 'Cats'"
-        }
-      ],
+      "transform": [{"filter": "datum.year == '2020-21' && datum.group == 'Cats'"}],
       "mark": {
         "type": "text",
         "align": "left",
@@ -148,42 +90,22 @@
         "fontStyle": "italic",
         "color": "#9DAEC4"
       },
-      "encoding": {
-        "text": {
-          "value": "42,572 cats in 2020–21"
-        }
-      }
+      "encoding": {"text": {"value": "42,572 cats in 2020–21"}}
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year == '2024-25' && datum.group == 'Cats'"
-        }
-      ],
+      "transform": [{"filter": "datum.year == '2024-25' && datum.group == 'Cats'"}],
       "mark": {
         "type": "text",
         "align": "right",
         "dx": -10,
-        "dy": -16,
+        "dy": 22,
         "fontSize": 12,
         "fontWeight": 700,
         "color": "#F49A72"
       },
-      "encoding": {
-        "text": {
-          "value": "−40% in four years"
-        }
-      }
+      "encoding": {"text": {"value": "−40% in four years"}}
     }
   ],
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
-  },
-  "padding": {
-    "left": 0,
-    "top": 4,
-    "bottom": 0,
-    "right": 118
-  }
+  "autosize": {"type": "fit-x", "contains": "padding"},
+  "padding": {"left": 0, "top": 4, "bottom": 0, "right": 118}
 }

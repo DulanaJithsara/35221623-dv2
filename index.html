@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Through the Shelter Door - RSPCA animal welfare in Australia</title>
+  <title>Through the Shelter Door — RSPCA animal welfare in Australia</title>
   <meta name="description" content="A data story about the animals the RSPCA receives, what happens to them, and how its cruelty inspectorate is changing across Australia, 2019–2025.">
   <meta name="author" content="Dulana Jithsara Sarathchandra">
   <script>document.documentElement.classList.add("js");</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -19,35 +19,31 @@
 </head>
 <body>
 
-<!-- ======================= TOP BAR ======================= -->
 <header class="topnav">
   <div class="wrap">
     <a class="brand" href="#top">Through the <i>Shelter Door</i></a>
     <nav aria-label="Sections">
-      <a href="#fewer">01 Intakes</a>
+      <a href="#fewer">01 Intake</a>
       <a href="#who">02 Outcomes</a>
       <a href="#where">03 States</a>
-      <a href="#home">04 Going Home</a>
-      <a href="#cruelty">05 Cruelty Cases</a>
+      <a href="#home">04 Going home</a>
+      <a href="#cruelty">05 Cruelty cases</a>
       <a href="#so-what">06 Priorities</a>
     </nav>
   </div>
   <div class="progress" aria-hidden="true"><span></span></div>
 </header>
 
-<!-- ======================= HERO ======================= -->
 <section class="hero" id="top">
   <div class="wrap hero-grid">
 
-    <!-- left: title and introduction -->
     <div class="hero-text">
-      <p class="kicker">RSPCA animal welfare in Australia from 2019 to 2025</p>
+      <p class="kicker">RSPCA animal welfare in Australia from 2019–2025</p>
       <h1>Through the <em>Shelter Door</em></h1>
-      <p class="deck">Fewer cats and dogs are arriving at the RSPCA than five years ago. Yet the animals that do arrive are harder to help, wildlife now makes up more than a third of the admissions, and more cruelty cases are ending up in court.</p>
-      <p class="byline">By <strong>Dulana Jithsara Sarathchandra</strong> -October 2026-  Data: RSPCA Australia National Statistics 2024–25 and the Australian Bureau of Statistics</p>
+      <p class="deck">Fewer cats and dogs are arriving at the Royal Society for the Prevention of Cruelty to Animals (RSPCA) than five years ago. Yet the animals that do arrive are harder to help, wildlife now makes up more than a third of the work, and more cruelty cases are ending up in court.</p>
+      <p class="byline">By <strong>Dulana Jithsara Sarathchandra</strong> · October 2026 - Data: RSPCA Australia National Statistics 2024–25 and the Australian Bureau of Statistics</p>
     </div>
 
-    <!-- right: the four key numbers, stacked top to bottom -->
     <ol class="stats" aria-label="Four key numbers">
       <li class="stat">
         <span class="num">77,464</span>
@@ -55,21 +51,20 @@
       </li>
       <li class="stat hot">
         <span class="num">−25%</span>
-        <span class="lbl">fewer animals than in 2020–21, led by a 40% drop in cats</span>
+        <span class="lbl">fewer animals compared to 2020–21, led by a 40% drop in cats</span>
       </li>
       <li class="stat">
         <span class="num">36%</span>
-        <span class="lbl">of all animals admitted were native wildlife</span>
+        <span class="lbl">of all animals received were native wildlife</span>
       </li>
       <li class="stat hot">
         <span class="num">+54%</span>
-        <span class="lbl">rise in finalised cruelty prosecutions in one year</span>
+        <span class="lbl">rise in finalized cruelty prosecutions in one year (from 248 → 381)</span>
       </li>
     </ol>
 
   </div>
 
-  <!-- colour key + glossary -->
   <div class="wrap">
     <div class="primer">
       <div>
@@ -77,46 +72,36 @@
         <ul class="key">
           <li><i style="background:var(--dogs)"></i><b>Dogs</b></li>
           <li><i style="background:var(--cats)"></i><b>Cats</b></li>
-          <li><i style="background:var(--wild)"></i><b>Wildlife</b> <span>native birds, possums, koalas…</span></li>
-          <li><i style="background:var(--pets)"></i><b>Other pets</b> <span>rabbits, guinea pigs, birds…</span></li>
+          <li><i style="background:var(--wild)"></i><b>Wildlife</b> <span>native birds, possums, koalas, etc.</span></li>
+          <li><i style="background:var(--pets)"></i><b>Other pets</b> <span>rabbits, guinea pigs, birds,etc.</span></li>
           <li><i style="background:var(--stock)"></i><b>Livestock &amp; horses</b></li>
         </ul>
       </div>
-      <div>
-        <h2>Six terms used on this page</h2>
-        <dl>
-          <div><dt>Received</dt><dd>Every animal in an RSPCA shelter or care centre during the financial year (1 July to 30 June).</dd></div>
-          <div><dt>Reunited with owner</dt><dd>The animal went back to its owner.</dd></div>
-          <div><dt>Rehomed</dt><dd>The animal was adopted by a new family.</dd></div>
-          <div><dt>Euthanased</dt><dd>Put to sleep by a vet, for example because of severe illness, injury or dangerous behaviour.</dd></div>
-          <div><dt>Prosecution finalised</dt><dd>An animal cruelty court case that was completed during the year.</dd></div>
-        </dl>
-      </div>
+
     </div>
   </div>
 </section>
 
 <main>
 
-<!-- ======================= CHAPTER 01 — FEWER (Lesson 2) ======================= -->
 <section class="chapter" id="fewer">
   <div class="wrap story">
     <div class="story-text">
       <span class="sec-num">01 / 06</span>
       <h2 class="sec-title">Fewer animals are coming through the door</h2>
-      <p class="sec-intro">In 2020–21 the RSPCA took in more than 103,000 animals. Four years later, the number was 77,464.</p>
+      <p class="sec-intro">In 2020–21 the RSPCA took  in more than 103,000 animals. Four years later, the number was 77,464.</p>
 
       <div class="step" data-step="1">
         <div class="step-meta"><span class="step-count">1 / 2</span><span class="bar"></span></div>
         <h3>Cats fell fastest</h3>
         <p>Cat intake fell from <span class="c-cats">42,572 to 25,639</span>, a drop of 40%. Dogs fell by 29%. Wildlife and other animals barely changed.</p>
-        <p>Hover over any point to see the exact number for that year.</p>
+        <p><i>(Hover over any point to see the exact number for that year.)</i></p>
       </div>
       <div class="step" data-step="2">
         <div class="step-meta"><span class="step-count">2 / 2</span><span class="bar"></span></div>
-        <h3>Nine-tenths of the drop came from dogs and cats</h3>
+        <h3>90% of the drop came from dogs and cats</h3>
         <p>Of the 25,593 fewer animals, <span class="c-cats">16,933 were cats</span> and <span class="c-dogs">6,459 were dogs</span>.</p>
-        <p>The RSPCA notes that intake depends partly on how many council pound contracts each state society runs, so a fall does not simply mean fewer animals need help.</p>
+        <p>The RSPCA notes that intake depends partly on how many council pound contracts each state society runs, so a fall does not simply mean that fewer animals need help.</p>
         <p><span class="hl">A smaller shelter population does not mean an easier job</span>, as the next chapter shows.</p>
       </div>
     </div>
@@ -126,85 +111,245 @@
         <div class="card-head"><span class="n">1</span><h3>Animals received nationally, by group</h3></div>
         <p class="sub">Financial years 2020–21 to 2024–25</p>
         <div id="c01" class="chart"></div>
-        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 2</span><a href="specs/c01_national_trend.vg.json">Chart JSON</a></figcaption>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 2</span></figcaption>
       </figure>
 
       <figure class="card" data-step="2">
-        <div class="card-head"><span class="n">2</span><h3>Where the 25,593 “missing” animals went</h3></div>
+        <div class="card-head"><span class="n">2</span><h3>Where the 25,593 "fewer" animals went</h3></div>
         <p class="sub">Change in animals received, 2020–21 to 2024–25</p>
         <p class="how"><b>How to read:</b> start with the bar on the left (2020–21). Each coloured bar shows how much one group fell. What is left is the light bar on the right (2024–25).</p>
         <div id="c02" class="chart"></div>
-        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 2</span><a href="specs/c02_waterfall.vg.json">Chart JSON</a></figcaption>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 2</span></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ======================= CHAPTER 02 — WHO (Lesson 3) ======================= -->
 <section class="chapter" id="who">
   <div class="wrap story">
     <div class="story-text">
       <span class="sec-num">02 / 06</span>
       <h2 class="sec-title">Who arrives, and what happens next</h2>
-      <p class="sec-intro">Most people picture dogs and cats when they think of the RSPCA. In 2024–25, the single biggest group was native wildlife.</p>
+      <p class="sec-intro">Most people picture dogs and cats when they think of the RSPCA. In 2024–25, the biggest group was native wildlife.</p>
 
       <div class="step" data-step="1">
         <div class="step-meta"><span class="step-count">1 / 3</span><span class="bar"></span></div>
         <h3>Wildlife is the largest group, and almost all of it is in Queensland</h3>
         <p>Of the 27,794 wild animals received nationally, <span class="c-wild">26,564 (96%)</span> came through RSPCA Queensland.</p>
-        <p>Each rectangle's area is proportional to the number of animals. Hover over one to see the exact count.</p>
+        <p><i>Each rectangle's area is proportional to the number of animals. Hover over one to see the exact count.</i></p>
       </div>
       <div class="step" data-step="2">
         <div class="step-meta"><span class="step-count">2 / 3</span><span class="bar"></span></div>
         <h3>Two very different journeys</h3>
         <p>Most cats and dogs leave alive: <span class="c-cats">64% of cats</span> and <span class="c-dogs">43% of dogs</span> are adopted by a new family, and a quarter of dogs go home to their owner.</p>
-        <p>Wild animals cannot be adopted; the best outcome is release back to the wild, which happened for 9%. Most (<span class="c-euth">65%</span>) were euthanased.</p>
+        <p>Wild animals cannot be adopted and therefore the best outcome is to release back to the wild, which happened for only 9%. Majority (<span class="c-euth">65%</span>) were euthanased.</p>
       </div>
       <div class="step" data-step="3">
         <div class="step-meta"><span class="step-count">3 / 3</span><span class="bar"></span></div>
         <h3>Dogs are the exception: a rising euthanasia rate</h3>
         <p>Over four years, the share of cats and wild animals that were euthanased stayed almost flat. For dogs it rose from <span class="c-dogs">11.2% to 17.5%</span>.</p>
-        <p>Fewer dogs now arrive, which suggests that those that do are more likely to have serious medical or behavioural problems. Chapter 4 looks at the reasons.</p>
+        <p>Fewer dogs now arrive, which suggests that those that do arrive are more likely to have serious medical or behavioural problems. Chapter 4 looks at the reasons.</p>
       </div>
     </div>
 
     <div class="story-charts">
       <figure class="card" data-step="1">
         <div class="card-head"><span class="n">3</span><h3>All 77,464 animals, by group and by state RSPCA</h3></div>
-        <p class="sub">2024–25. Area = number of animals</p>
         <div id="c03" class="chart"></div>
-        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 4</span><a href="specs/c03_treemap.vg.json">Chart JSON</a></figcaption>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 4</span></figcaption>
       </figure>
 
       <figure class="card" data-step="2">
         <div class="card-head"><span class="n">4</span><h3>What happened to the animals in each group</h3></div>
-        <p class="sub">2024–25. Column width = number of animals; block height = share of the group</p>
-        <p class="how"><b>How to read:</b> wider columns mean more animals. Within each column the blocks add to 100%. Compare the pink blocks to see which groups were euthanased most often.</p>
+        <p class="sub">For years 2024–25.</p>
+        <p class="how"><b>How to read:</b> Wider columns mean more animals. Within each column, the blocks add up to 100%.</p>
         <div id="c04" class="chart"></div>
-        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 4 (outcome rows)</span><a href="specs/c04_marimekko.vg.json">Chart JSON</a></figcaption>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 4 (outcome rows)</span></figcaption>
       </figure>
 
       <figure class="card" data-step="3">
         <div class="card-head"><span class="n">5</span><h3>Share of animals euthanased, 2020–21 vs 2024–25</h3></div>
-        <p class="sub">Each line joins the same group four years apart. Dogs are highlighted.</p>
+        <p class="sub">Each line joins the same group four years apart.</p>
         <div id="c05" class="chart"></div>
-        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 2</span><a href="specs/c05_slope_euthanasia.vg.json">Chart JSON</a></figcaption>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 2</span></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- Lesson 4: paste CHAPTER 03 — Where here -->
+<section class="chapter" id="where">
+  <div class="wrap story">
+    <div class="story-text">
+      <span class="sec-num">03 / 06</span>
+      <h2 class="sec-title">Where in Australia</h2>
+      <p class="sec-intro">Raw totals make the biggest states look busiest. Adjusting for population, and showing what kind of animals arrive, gives a fairer picture.</p>
 
-<!-- Lesson 5: paste CHAPTER 04 — Home here -->
+      <div class="step" data-step="1">
+        <div class="step-meta"><span class="step-count">1 / 3</span><span class="bar"></span></div>
+        <h3>Queensland stands out, and not only because of wildlife</h3>
+        <p>RSPCA Queensland received <span class="hl">75.9 animals per 10,000 residents</span>, nearly three times the national rate of 28.</p>
+        <p><i>Use the menu to switch the category of animals: Queensland is still among the highest, alongside the ACT.</i></p>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-meta"><span class="step-count">2 / 3</span><span class="bar"></span></div>
+        <h3>The mix of animals differs from state to state</h3>
+        <p>Each dot stands for 50 animals. Queensland is crowded with <span class="c-wild">green wildlife dots</span>, while cats dominate in New South Wales, Victoria and South Australia.</p>
+  
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-meta"><span class="step-count">3 / 3</span><span class="bar"></span></div>
+        <h3>South Australia was the only state to grow</h3>
+        <p>Intakes fell in seven of the eight state and territory RSPCAs last year, while South Australia rose by 13%. Tasmania's small fall hides a big shift within it where the dog intake almost tripled, from 130 to 379.</p>
+        <p>Note: RSPCA ACT, NT and Tasmania do not include council pound animals in their figures, while the other states do.</p>
+      </div>
+    </div>
 
-<!-- Lesson 6: paste CHAPTER 05 — Cruelty here -->
+    <div class="story-charts">
+      <figure class="card" data-step="1">
+        <div class="card-head"><span class="n">6</span><h3>Animals received per 10,000 residents</h3></div>
+        <p class="sub">2024–25, by state and territory RSPCA</p>
+        <div id="c06" class="chart tall"></div>
+        <figcaption><span>Sources: RSPCA National Statistics 2024–25, Table 4; ABS population, June 2025</span></figcaption>
+      </figure>
 
-<!-- Lesson 7: paste CHAPTER 06 — So What here -->
+      <figure class="card" data-step="2">
+        <div class="card-head"><span class="n">7</span><h3>What kind of animals each state receives</h3></div>
+        <p class="sub">2024–25. One dot = 50 animals, placed randomly within the state. Click a legend item to isolate it.</p>
+        <div id="c07" class="chart tall"></div>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 4</span></figcaption>
+      </figure>
+
+      <figure class="card" data-step="3">
+        <div class="card-head"><span class="n">8</span><h3>Change in animals received, 2023–24 to 2024–25</h3></div>
+        <p class="sub">Each line joins last year (hollow circle) to this year (gold circle) for the same state RSPCA. Sorted by percentage change.</p>
+        <div id="c08" class="chart"></div>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 4</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="home">
+  <div class="wrap story">
+    <div class="story-text">
+      <span class="sec-num">04 / 06</span>
+      <h2 class="sec-title">Going home, or not</h2>
+      <p class="sec-intro">A lost dog has a fair chance of finding its way back to its owner. A lost cat almost never does.</p>
+
+      <div class="step" data-step="1">
+        <div class="step-meta"><span class="step-count">1 / 2</span><span class="bar"></span></div>
+        <h3>Dogs get reclaimed; cats get adopted</h3>
+        <p>Nationally, <span class="c-dogs">24.8% of dogs</span> were reunited with their owner, compared with just <span class="c-cats">5.3% of cats</span>. Cats that leave alive almost always need a brand-new home.</p>
+        <p>Making sure a cat is microchipped, with up-to-date contact details, is one of the simplest ways owners can change this.</p>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-meta"><span class="step-count">2 / 2</span><span class="bar"></span></div>
+        <h3>Why animals are euthanased</h3>
+        <p>For dogs, behaviour is the most common reason: <span class="c-euth">1,652 of 2,768</span> dogs (60%) were euthanased because they were judged unsafe. For cats, illness and injury come first (47%).</p>
+        <p><i>Brighter cells mark the main reason in each state. The number under each state is how many animals its column covers, so be careful with small columns such as NT or Tasmania.</i></p>
+      </div>
+    </div>
+
+    <div class="story-charts">
+      <figure class="card" data-step="1">
+        <div class="card-head"><span class="n">9</span><h3>Dogs vs cats: share that went home or were adopted</h3></div>
+        <p class="sub">2024–25, by state RSPCA. Dark teal = reunited with owner, light teal = rehomed with a new family.</p>
+        <div id="c10" class="chart"></div>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 4</span></figcaption>
+      </figure>
+
+      <figure class="card" data-step="2">
+        <div class="card-head"><span class="n">10</span><h3>Reasons for euthanasia, by state RSPCA</h3></div>
+        <p class="sub">2024–25. Each column adds to 100%.</p>
+        <div id="c09" class="chart"></div>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 3</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="cruelty">
+  <div class="wrap story">
+    <div class="story-text">
+      <span class="sec-num">05 / 06</span>
+      <h2 class="sec-title">Cruelty complaints and court cases</h2>
+      <p class="sec-intro">RSPCA inspectors investigate reports of cruelty and neglect. In most states they can also take offenders to court.</p>
+
+      <div class="step" data-step="1">
+        <div class="step-meta"><span class="step-count">1 / 3</span><span class="bar"></span></div>
+        <h3>Tasmania and South Australia report the most per person</h3>
+        <p>RSPCA NSW and Queensland investigated the most complaints. Per person, though, <span class="hl">Tasmania (33 per 10,000 residents)</span> and South Australia (27) were the busiest.</p>
+        <p>The Northern Territory has no RSPCA inspectorate; animal welfare laws there are enforced by the NT Government.</p>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-meta"><span class="step-count">2 / 3</span><span class="bar"></span></div>
+        <h3>Fewer complaints, more prosecutions</h3>
+        <p>In 2024–25 complaints fell to a six-year low of 67,237, yet finalised prosecutions <span class="hl">jumped 54%</span>, from 248 to 381.</p>
+        <p>These national complaint figures count repeat visits to the same case, which is why they are higher than the investigations shown on the map.</p>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-meta"><span class="step-count">3 / 3</span><span class="bar"></span></div>
+        <h3>NSW drives the national increase</h3>
+        <p>RSPCA NSW finalised 226 of the 381 prosecutions nationally. Victoria and Western Australia had the highest success rates (47 of 47 and 59 of 61).</p>
+      </div>
+    </div>
+
+    <div class="story-charts">
+      <figure class="card" data-step="1">
+        <div class="card-head"><span class="n">11</span><h3>Cruelty complaints investigated, 2024–25</h3></div>
+        <p class="sub">Circle size = number of complaints; colour = complaints per 10,000 residents</p>
+        <div id="c11" class="chart tall"></div>
+        <figcaption><span>Sources: RSPCA National Statistics 2024–25, Table 5; ABS population, June 2025</span></figcaption>
+      </figure>
+
+      <figure class="card" data-step="2">
+        <div class="card-head"><span class="n">12</span><h3>National complaints vs finalised prosecutions</h3></div>
+        <p class="sub">2019–20 to 2024–25, one dot per financial year</p>
+        <p class="how"><b>How to read:</b> follow the line from 2019–20 to 2024–25; it gets thicker as time moves forward. Up means more prosecutions; left means fewer complaints.</p>
+        <div id="c12" class="chart"></div>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 6</span></figcaption>
+      </figure>
+
+      <figure class="card" data-step="3">
+        <div class="card-head"><span class="n">13</span><h3>Court cases by state RSPCA</h3></div>
+        <p class="sub">2024–25.</p>
+        <div id="c13" class="chart"></div>
+        <figcaption><span>Source: RSPCA National Statistics 2024–25, Table 5</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="ending" id="so-what">
+  <div class="wrap">
+    <div class="lead">
+      <div>
+        <span class="sec-num">06 / 06</span>
+        <h2 class="sec-title">How the RSPCA's priorities are changing</h2>
+      </div>
+      <p class="sec-intro">Put together, the numbers show an organisation shifting from handling large volumes of pets towards fewer, more complex cases.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="take"><span class="big">−36%</span><h3>Harder pet cases</h3><p>Dog and cat intake has fallen since 2020–21, but a greater share of dogs are now euthanased, most often for behavioural reasons.</p></div>
+      <div class="take"><span class="big">96%</span><h3>Wildlife on the front line</h3><p>More than a third of all animals are native wildlife, and 96% of them are cared for in Queensland.</p></div>
+      <div class="take"><span class="big">+54%</span><h3>More enforcement</h3><p>Complaints were at a six-year low in 2024–25, yet finalised prosecutions rose sharply.</p></div>
+    </div>
+
+    <div class="act">
+      <h3>What you can do</h3>
+      <ul>
+        <li>Microchip and register your pets, and keep your contact details up to date.</li>
+        <li>Desex cats and dogs to reduce unwanted litters.</li>
+        <li>Consider adopting from a shelter: cats are the most likely animals to need a new home.</li>
+        <li>Report suspected cruelty to your state RSPCA or, in the NT, the NT Government. <a href="https://www.rspca.org.au/report-animal-cruelty/">How to report</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 </main>
 
-<!-- ======================= FOOTER / METADATA ======================= -->
 <footer>
   <div class="wrap cols">
     <div>
@@ -212,22 +357,25 @@
       <ol>
         <li>RSPCA Australia (2025). <a href="https://www.rspca.org.au/about/annual-statistics/"><em>RSPCA National Statistics 2024–2025</em></a>, Tables 2–6.</li>
         <li>Australian Bureau of Statistics (2025). <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2025"><em>National, state and territory population, June 2025</em></a>. Estimated resident population, released 19 December 2025.</li>
-        <li>RSPCA Australia (2025). <a href="https://www.rspca.org.au/about/annual-statistics/"><em>Report on Animal Outcomes 2024–2025</em></a></li>
-        <li>State boundaries: <a href="https://github.com/rowanhogan/australian-states">rowanhogan/australian-states</a> (derived from ABS boundaries), simplified with mapshaper.</li>
+        <li>RSPCA Australia (2025). <a href="https://www.rspca.org.au/about/annual-statistics/"><em>Report on Animal Outcomes 2024–2025</em></a>. Used for definitions only.</li>
+        <li>State boundaries: <a href="https://github.com/rowanhogan/australian-states">rowanhogan/australian-states</a> (derived from ABS boundaries)</li>
       </ol>
     </div>
     <div>
-      <h2>Notes about the data</h2>
+      <h2>Notes on the data</h2>
       <ul>
         <li>All years are financial years (1 July to 30 June).</li>
-        <li>Per person rates use the estimated population as of 30 June 2025, the last day of the 2024–25 financial year.</li>
+        <li>RSPCA ACT, NT and Tasmania exclude council pound animals; the other states include them.</li>
+        <li>Per-person rates use the estimated population as at 30 June 2025, the last day of the 2024–25 financial year.</li>
       </ul>
     </div>
     <div>
       <h2>About</h2>
-      <p><strong>By:</strong> Dulana Jithsara Sarathchandra<br>
-         <strong>Unit:</strong> FIT3179 Data Visualisation, Monash University<br>
-         <strong>Date:</strong> October 2026</p>     
+      <p><strong>Author:</strong> Dulana Jithsara Sarathchandra<br>
+        <strong>Date:</strong> October 2026</p>
+        <strong>Created for:</strong> FIT3179 Data Visualisation, Monash University<br>
+      <p>Charts built with <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> and <a href="https://vega.github.io/vega/">Vega</a>. Typefaces: Instrument Serif, Atkinson Hyperlegible and JetBrains Mono, via Google Fonts.</p>
+      <p><strong>Use of AI:</strong> Claude (Anthropic) was used to check spelling and grammar, get the HEX codes for colours, verify calculation methods and to understand advanced functions and syntaxes. All data comes from the sources listed.</p>
     </div>
   </div>
 </footer>

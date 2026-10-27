@@ -1,9 +1,5 @@
-// Embeds every chart on the page with vega-embed and drives the sticky
-// scrollytelling text. Each chart's JSON specification lives in /specs.
+const FONT = "Atkinson Hyperlegible, Segoe UI, Helvetica, Arial, sans-serif";
 
-const FONT = "IBM Plex Sans, Segoe UI, Helvetica, Arial, sans-serif";
-
-// Shared dark theme for every chart
 const theme = {
   background: null,
   font: FONT,
@@ -25,7 +21,6 @@ const theme = {
   title: { font: FONT, color: "#E9EEF5" }
 };
 
-// [element id, spec file]
 const charts = [
   ["#c01", "specs/c01_national_trend.vg.json"],
   ["#c02", "specs/c02_waterfall.vg.json"],
@@ -44,14 +39,12 @@ const charts = [
 
 async function embedAll() {
   if (document.fonts && document.fonts.ready) {
-    try { await document.fonts.ready; } catch (e) { /* continue */ }
+    try { await document.fonts.ready; } catch (e) {}
   }
   for (const [el, url] of charts) {
     const target = document.querySelector(el);
     if (!target) continue;
     const opts = { actions: false, renderer: "svg", config: theme };
-    // The treemap (chart 3) is a Vega chart with a fixed width, so we give it
-    // the card's width ourselves and update it whenever the card resizes.
     const isTreemap = url.includes("treemap");
     const cardWidth = () => Math.max(320, Math.floor(target.getBoundingClientRect().width));
     if (isTreemap) opts.width = cardWidth();
@@ -70,7 +63,6 @@ async function embedAll() {
   }
 }
 
-// ---- Scrollytelling: show the story step that matches the chart in view ----
 function setupSteps() {
   const wide = window.matchMedia("(min-width: 960px)");
   document.querySelectorAll(".story").forEach((story) => {
@@ -91,7 +83,6 @@ function setupSteps() {
   });
 }
 
-// ---- Reading progress bar + active nav link ----
 function setupProgress() {
   const bar = document.querySelector(".progress span");
   const links = [...document.querySelectorAll(".topnav a[href^='#']")];

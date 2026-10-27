@@ -1,48 +1,16 @@
-/* ==========================================================================
-   Through the Shelter Door — FIT3179 Data Visualisation 2
-   style.css is built in 7 parts. Paste each part at the BOTTOM of this file,
-   in order. Each part carries its own phone/tablet rules (@media).
-     Lesson 1: Part 1 base · Part 2 top bar · Part 3 hero · Part 4 footer
-     Lesson 2: Part 5 story layout · Part 6 chart cards
-     Lesson 7: Part 7 conclusion
-   ========================================================================== */
-
-
-/* ==========================================================================
-   PART 1 — BASE: colours, fonts, page width (Lesson 1)
-   Change a colour here and it changes everywhere on the page.
-   ========================================================================== */
 :root {
-  --bg: #0F1B2D;          /* page background (deep navy) */
-  --bg-deep: #0B1422;     /* footer + top bar */
-  --card: #172A45;        /* chart cards — chart colours were tested on this */
-  --line: #24395A;        /* thin divider lines */
-  --line-2: #33507A;      /* slightly brighter lines */
-  --ink: #F2F5F9;         /* headings */
-  --ink-2: #C3CEDD;       /* body text */
-  --muted: #8FA2BC;       /* captions, sources */
-  --gold: #FFB547;        /* accent: key numbers and highlights */
-  --gold-soft: rgba(255, 181, 71, 0.10);
+  --bg: #0F1B2D;  --bg-deep: #0B1422;  --card: #172A45;  --line: #24395A;  --line-2: #33507A;  --ink: #F2F5F9;  --ink-2: #C3CEDD;  --muted: #8FA2BC;  --gold: #FFB547;  --gold-soft: rgba(255, 181, 71, 0.10);
 
-  /* animal colours (marks) and lighter versions for text (-t) */
   --dogs: #3A93E0;   --dogs-t: #7DB9F2;
   --cats: #E26A3A;   --cats-t: #F49A72;
   --wild: #1FA982;   --wild-t: #5FD3AD;
   --pets: #977AE6;   --pets-t: #B9A5F2;
   --stock: #B88826;  --stock-t: #D9B25C;
-  --euth: #E8668F;   /* euthanased */
-
-  --max: 1200px;          /* widest the content gets */
-  --gutter: 40px;         /* space at the sides and between columns */
-  --nav-h: 56px;          /* height of the top bar */
-  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;  /* headlines */
-  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;           /* paragraphs */
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;              /* numbers, labels */
-}
+  --euth: #E8668F;
+  --max: 1200px;  --gutter: 40px;  --nav-h: 56px;  --display: "Instrument Serif", Georgia, "Times New Roman", serif;  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;  --mono: "JetBrains Mono", ui-monospace, Consolas, Menlo, monospace;}
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
-
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); scrollbar-gutter: stable; }
 body {
   margin: 0;
   background: var(--bg);
@@ -56,45 +24,35 @@ body {
 a { color: var(--gold); text-underline-offset: 3px; }
 strong, b { color: var(--ink); }
 
-/* .wrap centres the content and keeps it no wider than --max */
 .wrap { max-width: calc(var(--max) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); }
 
-/* coloured words inside paragraphs, e.g. <span class="c-cats">25,639</span> */
 .hl     { color: var(--gold);    font-weight: 600; }
 .c-dogs { color: var(--dogs-t);  font-weight: 600; }
 .c-cats { color: var(--cats-t);  font-weight: 600; }
 .c-wild { color: var(--wild-t);  font-weight: 600; }
 .c-euth { color: var(--euth);    font-weight: 600; }
 
-/* chapter number + chapter title (used in every chapter) */
 .sec-num { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; }
 .sec-title {
-  font-family: var(--display); font-weight: 800;
-  font-size: clamp(30px, 3.2vw, 42px); line-height: 1.06; letter-spacing: -0.025em;
+  font-family: var(--display); font-weight: 400;  font-size: clamp(34px, 3.8vw, 50px); line-height: 1.04; letter-spacing: -0.01em;
   color: var(--ink); margin: 8px 0 14px;
 }
 .sec-intro { font-size: 18px; line-height: 1.55; color: var(--ink-2); margin: 0 0 28px; }
 
 @media (max-width: 959px) {
-  :root { --gutter: 20px; }   /* smaller side margins on tablets and phones */
-}
+  :root { --gutter: 20px; }}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
 
-
-/* ==========================================================================
-   PART 2 — TOP BAR: title, chapter links, reading-progress line (Lesson 1)
-   ========================================================================== */
 .topnav {
-  position: fixed; inset: 0 0 auto 0; z-index: 50;   /* stays at the top while scrolling */
-  height: var(--nav-h);
+  position: fixed; inset: 0 0 auto 0; z-index: 50;  height: var(--nav-h);
   background: rgba(11, 20, 34, 0.86);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
 .topnav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { font-family: var(--display); font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.brand { font-family: var(--display); font-weight: 400; font-size: 21px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
 .brand i { color: var(--gold); font-style: normal; }
 .topnav nav { display: flex; gap: 4px; overflow-x: auto; min-width: 0; }
 .topnav nav a {
@@ -104,28 +62,19 @@ strong, b { color: var(--ink); }
   transition: color .2s, background .2s;
 }
 .topnav nav a:hover { color: var(--ink); }
-.topnav nav a.on { color: var(--bg); background: var(--gold); }   /* chapter you are reading */
-.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
+.topnav nav a.on { color: var(--bg); background: var(--gold); }.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
 .progress span { display: block; height: 100%; width: 0; background: var(--gold); }
 
 @media (max-width: 959px) {
-  .brand { display: none; }   /* phones: show only the chapter links */
-}
+  .brand { display: none; }}
 
-
-/* ==========================================================================
-   PART 3 — HERO (first screen): title on the left, four key numbers
-   stacked down the right, then the colour key + glossary (Lesson 1)
-   ========================================================================== */
 .hero {
   padding: calc(var(--nav-h) + 72px) 0 64px;
   background:
-    radial-gradient(circle at 1px 1px, rgba(143, 162, 188, 0.16) 1px, transparent 0) 0 0 / 22px 22px,  /* dot pattern */
-    linear-gradient(180deg, #13223A 0%, var(--bg) 100%);
+    radial-gradient(circle at 1px 1px, rgba(143, 162, 188, 0.16) 1px, transparent 0) 0 0 / 22px 22px,    linear-gradient(180deg, #13223A 0%, var(--bg) 100%);
   border-bottom: 1px solid var(--line);
 }
 
-/* two columns: 7 parts text, 5 parts numbers */
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -140,28 +89,24 @@ strong, b { color: var(--ink); }
 }
 h1 {
   font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(46px, 6.4vw, 88px);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
+  font-weight: 400;  font-size: clamp(54px, 7.4vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   color: var(--ink);
   margin: 0 0 26px;
   max-width: 11ch;
 }
-h1 em { font-style: normal; color: var(--gold); }
-.deck { font-size: 20px; line-height: 1.6; color: var(--ink-2); max-width: 34em; margin: 0 0 22px; }
+h1 em { font-style: italic; color: var(--gold); }.deck { font-size: 20px; line-height: 1.6; color: var(--ink-2); max-width: 34em; margin: 0 0 22px; }
 .byline { font-size: 14px; color: var(--muted); margin: 0; }
 .byline strong { color: var(--ink); font-weight: 600; }
 
-/* the four key numbers — one per row */
 .stats {
   list-style: none; margin: 0; padding: 0;
   border-top: 1px solid var(--line-2);
 }
 .stat {
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr);   /* number column (same width on every row, so labels line up) | label */
-  column-gap: 22px;
+  grid-template-columns: 10rem minmax(0, 1fr);  column-gap: 22px;
   align-items: center;
   padding: 22px 0 22px 18px;
   border-bottom: 1px solid var(--line-2);
@@ -177,9 +122,7 @@ h1 em { font-style: normal; color: var(--gold); }
 .stat.hot .num { color: var(--gold); }
 .stat .lbl { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
 
-/* colour key + glossary box */
 .primer {
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--gutter);
   margin-top: 64px; padding: 28px 32px;
   background: var(--card); border: 1px solid var(--line); border-radius: 16px;
 }
@@ -191,25 +134,19 @@ h1 em { font-style: normal; color: var(--gold); }
 .primer dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
 .primer dt { font-weight: 600; color: var(--ink); font-size: 15px; }
 .primer dd { margin: 2px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
-.key { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.key li { display: flex; align-items: center; gap: 12px; font-size: 15px; }
-.key i { width: 14px; height: 14px; border-radius: 50%; flex: none; }
-.key b { font-weight: 600; }
-.key span { color: var(--muted); font-size: 14px; }
+ul.key { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px 24px; }
+ul.key li { display: flex; align-items: center; gap: 12px; font-size: 15px; }
+ul.key i { width: 14px; height: 14px; border-radius: 50%; flex: none; }
+ul.key b { font-weight: 600; }
+ul.key span { color: var(--muted); font-size: 14px; }
 
 @media (max-width: 959px) {
-  .hero-grid { grid-template-columns: 1fr; row-gap: 40px; }   /* numbers move under the title */
-  .primer { grid-template-columns: 1fr; padding: 22px; }
+  .hero-grid { grid-template-columns: 1fr; row-gap: 40px; }  .primer { grid-template-columns: 1fr; padding: 22px; }
 }
 @media (max-width: 560px) {
   .primer dl { grid-template-columns: 1fr; }
-  .stat { grid-template-columns: 1fr; row-gap: 8px; }        /* number above its label */
-}
+  .stat { grid-template-columns: 1fr; row-gap: 8px; }}
 
-
-/* ==========================================================================
-   PART 4 — FOOTER: sources, data notes, author + date (Lesson 1)
-   ========================================================================== */
 footer { background: var(--bg-deep); border-top: 1px solid var(--line); padding: 56px 0 64px; font-size: 14px; color: var(--ink-2); }
 footer .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
 footer h2 { font-family: var(--mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
@@ -223,21 +160,15 @@ footer a:hover { color: var(--gold); }
   footer .cols { grid-template-columns: 1fr; }
 }
 
-/* ==========================================================================
-   PART 5 — STORY LAYOUT: sticky text on the left, charts on the right
-   (Lesson 2)
-   ========================================================================== */
 .chapter { padding: 96px 0 40px; border-bottom: 1px solid var(--line); }
 .story {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);   /* text 5 parts | charts 7 parts */
-  column-gap: 56px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);  column-gap: 56px;
   align-items: start;
 }
 .story > * { min-width: 0; }
 .story-text {
-  position: sticky;                          /* stays in place while the charts scroll */
-  top: calc(var(--nav-h) + 32px);
+  position: sticky;  top: calc(var(--nav-h) + 32px);
   max-height: calc(100vh - var(--nav-h) - 48px);
   overflow-y: auto;
   padding-bottom: 12px;
@@ -245,7 +176,6 @@ footer a:hover { color: var(--gold); }
 }
 .story-charts { display: grid; gap: 44px; min-width: 0; }
 
-/* one "step" of text per chart */
 .step { border-left: 2px solid var(--line-2); padding: 2px 0 2px 20px; margin-bottom: 22px; }
 .step h3 { font-family: var(--body); font-weight: 600; font-size: 19px; line-height: 1.35; color: var(--ink); margin: 0 0 10px; }
 .step p { margin: 0 0 12px; font-size: 16.5px; }
@@ -254,7 +184,6 @@ footer a:hover { color: var(--gold); }
 .step-count { font-family: var(--mono); font-size: 12px; color: var(--muted); }
 .step-meta .bar { flex: 1; height: 1px; background: var(--line); }
 
-/* wide screens: show only the step whose chart is in view (main.js adds .active) */
 @media (min-width: 960px) {
   .js .step { display: none; }
   .js .step.active { display: block; border-left-color: var(--gold); animation: rise .45s ease both; }
@@ -271,10 +200,6 @@ footer a:hover { color: var(--gold); }
   .js .step.active { animation: none; }
 }
 
-
-/* ==========================================================================
-   PART 6 — CHART CARDS + Vega dropdowns and tooltips (Lesson 2)
-   ========================================================================== */
 figure.card {
   margin: 0; min-width: 0;
   background: var(--card);
@@ -283,21 +208,19 @@ figure.card {
   padding: 24px 26px 16px;
 }
 .card-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
-.card-head .n {                      /* the gold chart number */
-  font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--bg);
+.card-head .n {  font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--bg);
   background: var(--gold); border-radius: 999px; padding: 1px 8px; flex: none;
 }
 figure.card h3 { font-family: var(--body); font-size: 18px; font-weight: 600; line-height: 1.3; color: var(--ink); margin: 0; }
 figure.card .sub { font-size: 14px; color: var(--muted); margin: 0 0 16px; line-height: 1.45; }
-.how {                               /* "How to read" box */
-  font-size: 14px; line-height: 1.5; color: var(--ink-2);
+.how {  font-size: 14px; line-height: 1.5; color: var(--ink-2);
   background: var(--gold-soft); border-left: 3px solid var(--gold);
   border-radius: 0 8px 8px 0; padding: 8px 12px; margin: 0 0 16px;
 }
 .how b { color: var(--gold); font-weight: 600; }
-.chart { width: 100%; overflow-x: auto; overflow-y: hidden; }
-.chart.tall { min-height: 440px; }  /* maps */
-figure.card figcaption {
+.chart { width: 100%; overflow: hidden; }
+@media (max-width: 560px) { .chart { overflow-x: auto; } }
+.chart.tall { min-height: 440px; }figure.card figcaption {
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   font-size: 12.5px; color: var(--muted);
   border-top: 1px solid var(--line); margin-top: 12px; padding-top: 10px;
@@ -306,7 +229,6 @@ figure.card figcaption a { color: var(--muted); }
 figure.card figcaption a:hover { color: var(--gold); }
 .err { color: var(--cats-t); }
 
-/* Vega dropdown (map 1): put it above the chart and style it */
 .vega-embed { display: flex !important; flex-direction: column; }
 .vega-embed .vega-bindings { order: -1; margin-bottom: 10px; }
 .vega-bind { font-size: 14px; font-weight: 600; color: var(--ink); }
@@ -317,7 +239,6 @@ figure.card figcaption a:hover { color: var(--gold); }
 }
 .vega-bind select:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 
-/* Vega tooltip, dark version */
 #vg-tooltip-element {
   font-family: var(--body) !important; font-size: 13px !important;
   background: #0B1422 !important; color: var(--ink) !important;
@@ -326,3 +247,25 @@ figure.card figcaption a:hover { color: var(--gold); }
 }
 #vg-tooltip-element td.key { color: var(--muted) !important; }
 #vg-tooltip-element td.value { color: var(--ink) !important; }
+
+.ending { padding: 96px 0; }
+.ending .lead { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 56px; margin-bottom: 44px; }
+.takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.take { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.take .big { display: block; font-family: var(--mono); font-weight: 600; font-size: 40px; line-height: 1; color: var(--gold); margin-bottom: 12px; letter-spacing: -0.03em; }
+.take h3 { font-family: var(--display); font-weight: 400; font-size: 27px; line-height: 1.2; color: var(--ink); margin: 0 0 8px; }
+.take p { margin: 0; font-size: 15.5px; }
+.act {
+  margin-top: 24px; padding: 30px 34px; border-radius: 16px;
+  border: 1px solid var(--gold); background: linear-gradient(135deg, #1E3556 0%, var(--card) 100%);
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 32px; align-items: start;
+}
+.act h3 { font-family: var(--display); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--ink); margin: 0; }
+.act ul { margin: 0; padding-left: 20px; columns: 2; column-gap: 36px; }
+.act li { margin: 0 0 10px; break-inside: avoid; color: var(--ink-2); }
+.act li::marker { color: var(--gold); }
+
+@media (max-width: 959px) {
+  .ending .lead, .takeaways, .act { grid-template-columns: 1fr; }
+  .act ul { columns: 1; }
+}

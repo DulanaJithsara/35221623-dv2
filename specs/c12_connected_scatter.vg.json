@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Connected scatterplot: national cruelty complaints (x) against finalised prosecutions (y), one point per financial year from 2019-20 to 2024-25, joined in time order. Source: RSPCA National Statistics 2024-25, Table 6.",
+  "width": "container",
+  "height": 320,
+  "data": {"url": "data/inspectorate_trend.csv"},
+  "transform": [
+    {"calculate": "datum.prosecutions / datum.complaints * 1000", "as": "per_1000"},
+    {"window": [{"op": "row_number", "as": "i"}], "sort": [{"field": "year"}]}
+  ],
+  "encoding": {
+    "x": {
+      "field": "complaints",
+      "type": "quantitative",
+      "title": "Cruelty complaints (investigated and revisited)",
+      "scale": {"domain": [66000, 75000]},
+      "axis": {"format": ",.0f", "tickCount": 5}
+    },
+    "y": {
+      "field": "prosecutions",
+      "type": "quantitative",
+      "title": "Prosecutions finalised",
+      "scale": {"domain": [200, 450]},
+      "axis": {"tickCount": 5}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "trail", "color": "#FFB547"},
+      "encoding": {
+        "order": {"field": "i"},
+        "size": {
+          "field": "i",
+          "type": "quantitative",
+          "legend": null,
+          "scale": {"range": [1, 4]}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "stroke": "#172A45",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "color": {
+          "condition": {"test": "datum.year == '2024-25'", "value": "#FFB547"},
+          "value": "#E9EEF5"
+        },
+        "tooltip": [
+          {"field": "year", "title": "Financial year"},
+          {"field": "complaints", "title": "Complaints", "format": ","},
+          {"field": "prosecutions", "title": "Prosecutions finalised", "format": ","},
+          {
+            "field": "per_1000",
+            "title": "Prosecutions per 1,000 complaints",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.year != '2024-25'"}],
+      "mark": {"type": "text", "fontSize": 11.5, "dy": -14, "color": "#9DAEC4"},
+      "encoding": {"text": {"field": "year"}}
+    },
+    {
+      "transform": [{"filter": "datum.year == '2024-25'"}],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "dy": -14,
+        "fontWeight": 700,
+        "color": "#FFB547"
+      },
+      "encoding": {"text": {"field": "year"}}
+    },
+    {
+      "data": {
+        "values": [
+          {"x": 67400, "y": 425, "t": "2024–25: fewest complaints in six years,"},
+          {"x": 67400, "y": 412, "t": "but prosecutions jumped 54% (248 → 381)"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11.5,
+        "fontStyle": "italic",
+        "color": "#FFB547"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "t"}
+      }
+    }
+  ]
+}

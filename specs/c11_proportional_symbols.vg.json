@@ -1,0 +1,140 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map: circle area = cruelty complaints investigated by each state/territory RSPCA inspectorate in 2024-25; circle colour = complaints per 10,000 residents. NT has no RSPCA inspectorate. Sources: RSPCA National Statistics 2024-25 (Table 5); ABS estimated resident population, 30 June 2025.",
+  "width": "container",
+  "height": 420,
+  "projection": {"type": "conicEqualArea", "parallels": [-18, -36], "rotate": [-134, 0]},
+  "layer": [
+    {
+      "data": {
+        "url": "data/aus_states.topojson",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "mark": {"type": "geoshape", "stroke": "#172A45", "strokeWidth": 1.5},
+      "encoding": {
+        "fill": {
+          "condition": {"test": "datum.properties.state == 'NT'", "value": "#1A2E4C"},
+          "value": "#22395A"
+        }
+      }
+    },
+    {
+      "data": {"url": "data/inspectorate_by_state_2425.csv"},
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {"url": "data/state_centroids.csv"},
+            "key": "state",
+            "fields": ["lon", "lat"]
+          }
+        }
+      ],
+      "mark": {"type": "circle", "stroke": "#172A45", "strokeWidth": 1.5, "opacity": 0.92},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "complaints_investigated",
+          "type": "quantitative",
+          "title": "Complaints investigated",
+          "scale": {"range": [0, 3800], "zero": true},
+          "legend": {
+            "orient": "right",
+            "values": [1000, 5000, 15000],
+            "format": ",d",
+            "symbolFillColor": "#3F5679",
+            "symbolStrokeColor": "#7D8FA9",
+            "title": ["Complaints", "investigated"]
+          }
+        },
+        "color": {
+          "field": "complaints_per_10k",
+          "type": "quantitative",
+          "title": "Complaints per 10,000 residents",
+          "scale": {"domain": [10, 35], "range": ["#2A6A8E", "#A6E6EA"]},
+          "legend": {
+            "orient": "right",
+            "gradientLength": 120,
+            "title": ["Complaints per", "10,000 residents"]
+          }
+        },
+        "order": {"field": "complaints_investigated", "sort": "descending"},
+        "tooltip": [
+          {"field": "state_name", "title": "RSPCA"},
+          {
+            "field": "complaints_investigated",
+            "title": "Complaints investigated",
+            "format": ","
+          },
+          {
+            "field": "complaints_per_10k",
+            "title": "Per 10,000 residents",
+            "format": ".1f"
+          },
+          {
+            "field": "prosecutions_finalised",
+            "title": "Prosecutions finalised",
+            "format": ","
+          },
+          {
+            "field": "successful_prosecutions",
+            "title": "Successful prosecutions",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {"url": "data/inspectorate_by_state_2425.csv"},
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {"url": "data/state_centroids.csv"},
+            "key": "state",
+            "fields": ["lon", "lat"]
+          }
+        },
+        {
+          "calculate": "datum.state == 'ACT' ? +datum.lon + 3.6 : (datum.state == 'NSW' ? +datum.lon + 6.4 : (datum.state == 'TAS' ? +datum.lon + 3.4 : +datum.lon))",
+          "as": "lon_l"
+        },
+        {
+          "calculate": "datum.state == 'ACT' ? +datum.lat + 0.6 : (datum.state == 'NSW' ? +datum.lat + 0.6 : (datum.state == 'TAS' ? +datum.lat - 0.3 : +datum.lat - 0.6 - 3.2 * sqrt(datum.complaints_investigated / 16713)))",
+          "as": "lat_l"
+        },
+        {
+          "calculate": "datum.state + ' ' + format(datum.complaints_investigated, ',')",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 11.5,
+        "fontWeight": 700,
+        "color": "#E9EEF5",
+        "baseline": "top"
+      },
+      "encoding": {
+        "longitude": {"field": "lon_l", "type": "quantitative"},
+        "latitude": {"field": "lat_l", "type": "quantitative"},
+        "text": {"field": "label"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"lon": 133.4, "lat": -19.0, "t": "NT: no RSPCA"},
+          {"lon": 133.4, "lat": -20.4, "t": "inspectorate"}
+        ]
+      },
+      "mark": {"type": "text", "fontSize": 11, "fontStyle": "italic", "color": "#7D8FA9"},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "t"}
+      }
+    }
+  ]
+}

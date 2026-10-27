@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Butterfly (back-to-back) chart: share of dogs (left) and cats (right) received in 2024-25 that were reunited with their owner (reclaimed or returned) or rehomed with a new family, by state/territory RSPCA. Source: RSPCA National Statistics 2024-25, Table 4.",
+  "width": "container",
+  "height": 320,
+  "layer": [
+    {
+      "data": {"url": "data/outcomes_2425.csv"},
+      "transform": [
+        {"filter": "datum.species == 'Dogs' || datum.species == 'Cats'"},
+        {
+          "joinaggregate": [{"op": "sum", "field": "count", "as": "species_total"}],
+          "groupby": ["state", "species"]
+        },
+        {
+          "filter": "datum.outcome_family == 'Reunited with owner' || datum.outcome_family == 'Rehomed'"
+        },
+        {
+          "aggregate": [
+            {"op": "sum", "field": "count", "as": "n"},
+            {"op": "max", "field": "species_total", "as": "total"}
+          ],
+          "groupby": ["state", "species", "outcome_family"]
+        },
+        {"calculate": "datum.n / datum.total", "as": "share"},
+        {
+          "calculate": "datum.species == 'Dogs' ? -datum.share : datum.share",
+          "as": "signed"
+        },
+        {
+          "calculate": "datum.outcome_family == 'Reunited with owner' ? 0 : 1",
+          "as": "o_order"
+        }
+      ],
+      "mark": {"type": "bar", "height": {"band": 0.72}},
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": null,
+          "sort": ["QLD", "NSW", "VIC", "SA", "ACT", "WA", "TAS", "NT"],
+          "axis": {
+            "domain": false,
+            "ticks": false,
+            "labelFontWeight": 700,
+            "labelPadding": 10
+          }
+        },
+        "x": {
+          "field": "signed",
+          "type": "quantitative",
+          "title": null,
+          "stack": "zero",
+          "scale": {"domain": [-1, 1]},
+          "axis": {
+            "labelExpr": "format(abs(datum.value), '.0%')",
+            "values": [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1],
+            "grid": true
+          }
+        },
+        "order": {"field": "o_order"},
+        "color": {
+          "field": "outcome_family",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": ["Reunited with owner", "Rehomed"],
+            "range": ["#1B7268", "#7FD6CB"]
+          },
+          "legend": {"orient": "bottom", "direction": "horizontal"}
+        },
+        "tooltip": [
+          {"field": "species", "title": "Animal"},
+          {"field": "state", "title": "RSPCA"},
+          {"field": "outcome_family", "title": "Outcome"},
+          {"field": "n", "title": "Animals", "format": ","},
+          {"field": "share", "title": "Share of all received", "format": ".0%"},
+          {"field": "total", "title": "Total received", "format": ","}
+        ]
+      }
+    },
+    {
+      "data": {"values": [{"x": 0}]},
+      "mark": {"type": "rule", "color": "#E9EEF5", "strokeWidth": 1.2},
+      "encoding": {"x": {"field": "x", "type": "quantitative"}}
+    },
+    {
+      "data": {"values": [{"x": -0.97, "t": "◀  DOGS"}]},
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#3A93E0",
+        "baseline": "bottom",
+        "dy": -6,
+        "align": "left"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"value": 0},
+        "text": {"field": "t"}
+      }
+    },
+    {
+      "data": {"values": [{"x": 0.97, "t": "CATS  ▶"}]},
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#F49A72",
+        "baseline": "bottom",
+        "dy": -6,
+        "align": "right"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"value": 0},
+        "text": {"field": "t"}
+      }
+    }
+  ]
+}

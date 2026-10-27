@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot density map: one dot = 50 animals received by each state/territory RSPCA in 2024-25, coloured by animal group. Dots are placed at random inside each state, so they show how many and which kind, not exact locations. Click a legend entry to isolate a group. Source: RSPCA National Statistics 2024-25, Table 4.",
+  "width": "container",
+  "height": 420,
+  "projection": {"type": "conicEqualArea", "parallels": [-18, -36], "rotate": [-134, 0]},
+  "layer": [
+    {
+      "data": {
+        "url": "data/aus_states.topojson",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#22395A",
+        "stroke": "#33507A",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {"url": "data/dots_received_2425.csv"},
+      "params": [
+        {
+          "name": "pick",
+          "select": {"type": "point", "fields": ["group"]},
+          "bind": "legend"
+        }
+      ],
+      "mark": {"type": "circle", "size": 11, "opacity": 0.9},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": "1 dot = 50 animals (click to isolate)",
+          "scale": {
+            "domain": ["Dogs", "Cats", "Wildlife", "Other pets", "Livestock & horses"],
+            "range": ["#3A93E0", "#E26A3A", "#1FA982", "#977AE6", "#B88826"]
+          },
+          "legend": {
+            "orient": "right",
+            "symbolType": "circle",
+            "symbolSize": 90,
+            "title": ["1 dot = 50 animals", "(click to isolate)"]
+          }
+        },
+        "opacity": {"condition": {"param": "pick", "value": 0.9}, "value": 0.06},
+        "tooltip": [
+          {"field": "group", "title": "Animal group"},
+          {"field": "state", "title": "RSPCA"}
+        ]
+      }
+    },
+    {
+      "data": {"url": "data/state_centroids.csv"},
+      "transform": [
+        {
+          "calculate": "datum.state == 'ACT' ? +datum.lon + 2.2 : +datum.lon",
+          "as": "lon_l"
+        },
+        {
+          "calculate": "datum.state == 'ACT' ? +datum.lat - 0.8 : (datum.state == 'QLD' ? +datum.lat + 3.5 : +datum.lat + 2.2)",
+          "as": "lat_l"
+        }
+      ],
+      "mark": {"type": "text", "fontSize": 12.5, "fontWeight": 800, "color": "#E9EEF5"},
+      "encoding": {
+        "longitude": {"field": "lon_l", "type": "quantitative"},
+        "latitude": {"field": "lat_l", "type": "quantitative"},
+        "text": {"field": "state"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"lon": 112.6, "lat": -37.3, "t": "Queensland's 531 green dots"},
+          {"lon": 112.6, "lat": -38.6, "t": "= 26,564 native animals"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11.5,
+        "fontStyle": "italic",
+        "color": "#5FD3AD"
+      },
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "t"}
+      }
+    }
+  ]
+}
